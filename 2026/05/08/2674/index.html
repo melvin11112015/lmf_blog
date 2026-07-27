@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html>
+  
+
+
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+  <title>使用 LM Studio 在 macOS 上本地部署 Gemma 4 | 😄豐De个人博客</title>
+
+  
+    
+<link rel="stylesheet" href="/js/aos/aos.css">
+
+  
+
+  <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
+  <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  
+    <script>
+        var themeModelId = '';
+        if (themeModelId) {
+            localStorage.setItem('modelId', themeModelId);
+        }
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/gh/yuang01/live2d-widget@latest/autoload.js"></script>
+    <script>
+        var live2dOpen = eval('true') || false;
+        if (!live2dOpen) {
+            localStorage.setItem('waifu-display', 1609323474481);
+        }
+    </script>
+  
+  
+<link rel="stylesheet" href="/css/animate.min.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+    
+<link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css">
+
+  
+  
+  <style>
+        @media (max-width: 992px) {
+            #waifu {
+                display: none;
+            }
+        }
+    </style>
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+  <script src="/js/jquery3.5.1.js"></script>
+  <script src="/js/vue2.6.11.js"></script>
+  <link href="/js/danmu/barrager.css" rel="stylesheet">
+<script src="/js/danmu/jquery.barrager.js"></script>
+  <body>
+    <!-- 判断是否为黑夜模式 -->
+    <script>
+      let isDark = JSON.parse(localStorage.getItem('dark')) || JSON.parse('false');
+
+      if (isDark) {
+        $(document.body).addClass('darkModel');
+      }
+    </script>
+
+    <header class="header bg-color" 
+  style="position: fixed; 
+  left: 0; top: 0; z-index: 10;width: 100%;"
+>
+  <div class="header-content">
+    <div class="bars">
+      <div id="appDrawer" class="sidebar-image">
+  <i class="fa fa-bars" aria-hidden="true" @click="showDialogDrawer"></i>
+  <transition name="fade">
+    <div class="drawer-box_mask" v-cloak style="display: none;" v-show="visible" @click.self="cancelDialogDrawer">
+    </div>
+  </transition>
+  <div class="drawer-box" :class="{'active': visible}">
+    <div class="drawer-box-head bg-color">
+      <img class="drawer-box-head_logo" src="/medias/logo.png" alt="logo">
+      <h3 class="drawer-box-head_title">😄豐De个人博客</h3>
+      <h5 class="drawer-box-head_desc">Lmfeng Blog</h5>
+    </div>
+    <div class="drawer-box-content">
+      <ul class="drawer-box-content_menu">
+        
+          <li class="drawer-box-content_item">
+            <a href="/" class="menu-item-link">
+              
+                <i class="fa fa-home" aria-hidden="true"></i>
+              
+              <span>首页</span>
+            </a>
+          </li>
+        
+          <li class="drawer-box-content_item">
+            <a href="/archives" class="menu-item-link">
+              
+                <i class="fa fa-home" aria-hidden="true"></i>
+              
+              <span>归档</span>
+            </a>
+          </li>
+        
+          <li class="drawer-box-content_item">
+            <a href="/tags" class="menu-item-link">
+              
+                <i class="fa fa-tags" aria-hidden="true"></i>
+              
+              <span>标签</span>
+            </a>
+          </li>
+        
+          <li class="drawer-box-content_item">
+            <a href="/categories" class="menu-item-link">
+              
+                <i class="fa fa-bookmark" aria-hidden="true"></i>
+              
+              <span>分类</span>
+            </a>
+          </li>
+        
+          <li class="drawer-box-content_item">
+            <a href="/about" class="menu-item-link">
+              
+                <i class="fa fa-user" aria-hidden="true"></i>
+              
+              <span>关于</span>
+            </a>
+          </li>
+        
+          <li class="drawer-box-content_item">
+            <a target="_blank" rel="noopener" href="https://developer.android.google.cn/" class="menu-item-link">
+              
+                <i class="fa fa-link" aria-hidden="true"></i>
+              
+              <span>友情链接</span>
+            </a>
+          </li>
+        
+        <li class="drawer-box-content_item">
+          <a target="_blank" rel="noopener" href="https://github.com/melvin11112015/">
+            <i class="fa fa-github" aria-hidden="true"></i>
+            <span>Github</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+  var body = document.body || document.documentElement || window;
+  var vm = new Vue({
+    el: '#appDrawer',
+    data: {
+      visible: false,
+      top: 0,
+    },
+    computed: {
+    },
+    mounted() {
+    },
+    methods: {
+      showDialogDrawer() {
+        this.visible = true;
+        // 防止页面滚动，只能让弹框滚动
+        this.top = $(document).scrollTop()
+        body.style.cssText = 'width: 100%; height: 100%; position: fixed; top: -' + this.top  + 'px; left: 0; overflow: hidden;';
+      },
+      cancelDialogDrawer() {
+        this.visible = false;
+        body.removeAttribute('style');
+        $(document).scrollTop(this.top)
+      }
+    },
+    created() {}
+  })
+</script>
+    </div>
+    <div class="blog-title" id="author-avatar">
+      <div class="avatar">
+        <img src="/medias/logo.png" alt="logo">
+      </div>
+      <a href="/" class="logo">😄豐De个人博客</a>
+    </div>
+    <nav class="navbar">
+      <ul class="menu">
+        
+          <li class="menu-item">
+            <a href="/" class="menu-item-link">
+              
+                <i class="fa fa-home" aria-hidden="true"></i>
+              
+              <span>首页</span>
+            </a>
+          </li>
+        
+          <li class="menu-item">
+            <a href="/archives" class="menu-item-link">
+              
+                <i class="fa fa-archive" aria-hidden="true"></i>
+              
+              <span>归档</span>
+            </a>
+          </li>
+        
+          <li class="menu-item">
+            <a href="/tags" class="menu-item-link">
+              
+                <i class="fa fa-tags" aria-hidden="true"></i>
+              
+              <span>标签</span>
+            </a>
+          </li>
+        
+          <li class="menu-item">
+            <a href="/categories" class="menu-item-link">
+              
+                <i class="fa fa-bookmark" aria-hidden="true"></i>
+              
+              <span>分类</span>
+            </a>
+          </li>
+        
+          <li class="menu-item">
+            <a href="/about" class="menu-item-link">
+              
+                <i class="fa fa-user" aria-hidden="true"></i>
+              
+              <span>关于</span>
+            </a>
+          </li>
+        
+          <li class="menu-item">
+            <a target="_blank" rel="noopener" href="https://developer.android.google.cn/" class="menu-item-link">
+              
+                <i class="fa fa-link" aria-hidden="true"></i>
+              
+              <span>友情链接</span>
+            </a>
+          </li>
+        
+      </ul>
+      
+        <div class="dark">
+  <div class="dark-content">
+    <i class="fa fa-moon-o" aria-hidden="true"></i>
+    <!-- <span>关灯</span> -->
+  </div>
+  
+</div>
+
+<script>
+  $(function() {
+    let isDark = JSON.parse(localStorage.getItem('dark'))  || JSON.parse('false');
+    if (isDark) {
+      $(".dark-content").replaceWith(
+          `
+          <div class='dark-content'>
+            <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+          </div>
+          `
+        );
+    }
+    $('.dark').click(function() {
+      if ($(document.body).is('.darkModel')) {
+        $(document.body).removeClass('darkModel');
+        localStorage.setItem('dark', false);
+        $(".dark-content").replaceWith(
+          `
+          <div class='dark-content'>
+            <i class="fa fa-moon-o" aria-hidden="true"></i>
+          </div>
+          `
+        );
+      } else {
+        $(document.body).addClass('darkModel');
+        localStorage.setItem('dark', true);
+        $(".dark-content").replaceWith(
+          `
+          <div class='dark-content'>
+            <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+          </div>
+          `
+        );
+      }
+    })
+  })
+</script>
+        
+      
+        <div id="appSearch">
+  <div class="search"  @click="showDialog()"><i class="fa fa-search" aria-hidden="true"></i></div>
+  <transition name="fade">
+    <div class="message-box_wrapper" style="display: none;" v-cloak v-show="dialogVisible" @click.self="cancelDialogVisible()">
+      <div class="message-box animated bounceInDown">
+        <div class="close" style="overflow: hidden;">
+          <i class="fa fa-close" aria-hidden="true" style="float:right;" @click.self="cancelDialogVisible()"></i>
+        </div>
+        <h2>
+          <i class="fa fa-search" aria-hidden="true"></i>
+          <span class="title">本地搜索</span>
+          <!-- <i class="fa fa-close" style="float:right;" aria-hidden="true" @click.self="cancelDialogVisible()"></i> -->
+        </h2>
+        <form class="site-search-form">
+          <input type="text"
+            placeholder="请输入关键字"
+            id="local-search-input" 
+            @click="getSearchFile()"
+            class="st-search-input"
+            v-model="searchInput"
+          />
+        </form>
+        <div class="result-wrapper">
+          <div id="local-search-result" class="local-search-result-cls"></div>
+        </div>
+      </div>
+    </div>
+  </transition>
+</div>
+<script src="/js/local_search.js"></script>
+<script>
+  var body = document.body || document.documentElement || window;
+  var vm = new Vue({
+    el: '#appSearch',
+    data: {
+      dialogVisible: false,
+      searchInput: '',
+      top: 0,
+    },
+    computed: {
+    },
+    mounted() {
+    },
+    methods: {
+      showDialog() {
+        this.dialogVisible = true;
+        // 防止页面滚动，只能让弹框滚动
+        this.top = $(document).scrollTop()
+        body.style.cssText = 'overflow: hidden;';
+      },
+      getSearchFile() {
+        if (!this.searchInput) {
+          getSearchFile("/search.xml");
+        }
+      },
+      cancelDialogVisible() {
+        this.dialogVisible = false;
+        body.removeAttribute('style');
+        $(document).scrollTop(this.top)
+      },
+    },
+    created() {}
+  })
+</script>
+<!-- 解决刷新页面闪烁问题，可以在元素上添加display: none, 或者用vue.extend方法，详情：https://blog.csdn.net/qq_31393401/article/details/81017912 -->
+<!-- 下面是搜索基本写法 -->
+<!-- <script type="text/javascript" id="local.search.active">
+  var inputArea = document.querySelector("#local-search-input");
+  inputArea.onclick   = function(){ getSearchFile(); this.onclick = null }
+  inputArea.onkeydown = function(){ if(event.keyCode == 13) return false }
+</script> -->
+
+      
+
+    </nav>
+  </div>
+  
+  <a target="_blank" rel="noopener" href="https://github.com/melvin11112015/" class="github-corner color-primary" aria-label="View source on GitHub"><svg width="60" height="60" viewBox="0 0 250 250" style="fill:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+  
+    <div id="he-plugin-simple"></div>
+    <script>
+      WIDGET = {
+        CONFIG: {
+          "modules": "012",
+          "background": 5,
+          "tmpColor": "4A4A4A",
+          "tmpSize": 16,
+          "cityColor": "4A4A4A",
+          "citySize": 16,
+          "aqiSize": 16,
+          "weatherIconSize": 24,
+          "alertIconSize": 18,
+          "padding": "10px 10px 10px 10px",
+          "shadow": "1",
+          "language": "auto",
+          "borderRadius": 5,
+          "fixed": "false",
+          "vertical": "middle",
+          "horizontal": "center",
+          "key": "2784dd3fcb1e4f0f9a9b579bf69641f2"
+        }
+      }
+    </script>
+    <script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script> 
+    
+</header>
+    <main class="main" style="margin-top: 60px;">
+      
+ <!-- prismjs 代码高亮 -->
+ 
+
+<div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -1;"></div>
+<div id="appBgSwiper" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;" :style="{'background-color': bgColor ? bgColor : 'transparent'}">
+    <transition-group tag="ul" :name="names">
+        <li v-for='(image,index) in img' :key='index' v-show="index === mark" class="bg-swiper-box">
+            <img :src="image" class="bg-swiper-img">
+        </li>
+    </transition-group>
+</div>
+<script>
+    var vm = new Vue({
+        el: '#appBgSwiper',
+        data: {
+            names: '' || 'fade' || 'fade', // translate-fade fade
+            mark: 0,
+            img: [],
+            bgColor: '',
+            time: null
+        },
+        methods: {   //添加方法
+            change(i, m) {
+                if (i > m) {
+                    // this.names = 'fade';
+                } else if (i < m) {
+                    // this.names = 'fade';
+                } else {
+                    return;
+                }
+                this.mark = i;
+            },
+            prev() {
+                // this.names = 'fade';
+                this.mark--;
+                if (this.mark === -1) {
+                    this.mark = 3;
+                    return
+                }
+            },
+            next() {
+                // this.names = 'fade';
+                this.mark++;
+                if (this.mark === this.img.length) {
+                    this.mark = 0;
+                    return
+                }
+            },
+            autoPlay() {
+                // this.names = 'fade';
+                this.mark++;
+                if (this.mark === this.img.length) {
+                    this.mark = 0;
+                    return
+                }
+            },
+            play() {
+                let bgImgDelay = '' || '180000'
+                let delay = parseInt(bgImgDelay) || 180000;
+                this.time = setInterval(this.autoPlay, delay);
+            },
+            enter() {
+                clearInterval(this.time);
+            },
+            leave() {
+                this.play();
+            }
+        },
+        created() {
+            this.play()
+        },
+        beforeDestroy() {
+            clearInterval(this.time);
+        },
+        mounted() {
+            let prop = ''|| '';
+            let isImg = prop.includes('.bmp') || prop.includes('.jpg') || prop.includes('.png') || prop.includes('.tif') || prop.includes('.gif') || prop.includes('.pcx') || prop.includes('.tga') || prop.includes('.exif') || prop.includes('.fpx') || prop.includes('.psd') || prop.includes('.cdr') || prop.includes('.pcd') || prop.includes('.dxf') || prop.includes('.ufo') || prop.includes('.eps') || prop.includes('.ai') || prop.includes('.raw') || prop.includes('.WMF') || prop.includes('.webp') || prop.includes('.jpeg')
+            if (isImg) {
+                let img = prop.split(',');
+                let configRoot = '/'
+                let arrImg = [];
+                img.forEach(el => {
+                    var Expression=/http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+			        var objExp = new RegExp(Expression);
+
+                    if(objExp.test(el)) {
+                        // http or https
+                        arrImg.push(el);
+                    } else {
+                        // 非http or https开头
+                        // 本地文件
+                        let firstStr = el.charAt(0);
+                        if (firstStr == '/') {
+                            el = el.substr(1); // 删除第一个字符 '/',因为 configRoot最后一个字符为 /
+                        }
+                        el = configRoot + el;
+                        arrImg.push(el);
+                    }
+                })
+                this.img = arrImg;
+            } else {
+                this.bgColor = prop;
+            }
+        }
+    })
+</script>
+
+<style>
+    .bg-swiper-box {
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+    .bg-swiper-img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+    }
+</style>
+
+
+
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/2.jpg" style="background-repeat: no-repeat; background-size: cover; 
+  background-position: center center;position: relative;">
+  <div class="post-detail-header-mask"></div>
+  <canvas id="header_canvas"style="position:absolute;bottom:0"></canvas>
+  
+    <div class="title-box">
+      
+        <span class="title" id="post-detail-header-title"></span>
+        <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+          <script>
+            var typed = new Typed("#post-detail-header-title", {
+              strings: ['使用 LM Studio 在 macOS 上本地部署 Gemma 4'],
+              startDelay: 100,
+              typeSpeed: 100,
+              loop: false,
+              backSpeed: 50,
+              showCursor: false
+            });
+          </script>
+        
+    </div>
+  
+  
+  
+    <script src="/js/bubble/bubble.js"></script>
+  
+</div>
+
+
+<div class="row justify-position">
+  <div class="main-content">
+    <article class="post post-detail">
+      
+      
+      <div class="post-meta">
+        <i class="fa fa-clock-o" aria-hidden="true"></i>
+        <span class="post-time">2026-05-08</span>
+      </div>
+      
+      <div class="post-tags-categories">
+        
+        <div class="tags">
+          <i class="iconfont icontag"></i>
+          
+            <a href="/tags/LLM/" class="">
+              LLM
+            </a>
+          
+        </div>
+        
+        
+        <div class="categories">
+          <i class="iconfont iconbookmark1"></i>
+          
+            <a href="/categories/AI/" class="">
+              AI
+            </a>
+          
+        </div>
+        
+      </div>
+      <div class="post-content">
+        <p>在本地运行大语言模型，已经从“折腾显卡和命令行”的小众玩法，逐渐变成普通开发者也能轻松上手的日常工具。对于 Mac 用户来说，LM Studio 是一个非常友好的选择：它提供图形界面、模型下载、聊天窗口、本地 API Server 和命令行工具，可以把本地大模型部署流程简化很多。</p>
+<p>本文记录如何使用 LM Studio 在 macOS 上本地部署 Gemma 4，并通过图形界面和本地 API 两种方式运行模型。</p>
+<a id="more"></a>
+
+<h2 id="Gemma-4-是什么"><a href="#Gemma-4-是什么" class="headerlink" title="Gemma 4 是什么"></a>Gemma 4 是什么</h2><p>Gemma 4 是 Google DeepMind 发布的开放模型系列。它延续了 Gemma 系列轻量、高效、适合本地和边缘设备部署的方向，同时面向推理、Agent 工作流和多种开发工具做了增强。</p>
+<p>Gemma 4 提供了不同规模的模型，例如面向移动和 IoT 场景的 E2B、E4B，以及更适合个人电脑和工作站运行的 12B、26B、31B 等版本。具体选择哪个版本，主要取决于你的 Mac 内存、使用场景和对速度的要求。</p>
+<p>对于本地体验来说，可以优先选择量化后的 GGUF 或 MLX 格式模型。它们更适合在消费级设备上运行，也更容易被 LM Studio 直接加载。</p>
+<h2 id="为什么选择-LM-Studio"><a href="#为什么选择-LM-Studio" class="headerlink" title="为什么选择 LM Studio"></a>为什么选择 LM Studio</h2><p>LM Studio 的定位是一个本地 AI 模型桌面应用。它适合三类使用场景：</p>
+<ul>
+<li>想在本地和模型聊天，不希望每次都写脚本</li>
+<li>想快速试验不同开源模型</li>
+<li>想把本地模型作为 OpenAI 风格 API 提供给自己的应用调用</li>
+</ul>
+<p>相比纯命令行方案，LM Studio 的优点是上手更快。你可以在界面里搜索模型、下载模型、调整上下文长度和 GPU Offload 参数，也可以在 Developer 面板中启动本地服务。</p>
+<p>如果后续需要自动化，也可以使用 LM Studio 自带的 <code>lms</code> 命令行工具。</p>
+<h2 id="环境要求"><a href="#环境要求" class="headerlink" title="环境要求"></a>环境要求</h2><p>在 macOS 上使用 LM Studio，建议满足以下条件：</p>
+<ul>
+<li>Apple Silicon 芯片，例如 M1、M2、M3 或 M4</li>
+<li>macOS 13.4 或更新版本</li>
+<li>如果使用 MLX 模型，建议 macOS 14.0 或更新版本</li>
+<li>推荐 16GB 或以上统一内存</li>
+<li>如果是 8GB 内存的 Mac，建议只尝试较小模型，并降低上下文长度</li>
+</ul>
+<p>需要注意的是，LM Studio 当前主要面向 Apple Silicon Mac。Intel Mac 并不是推荐环境。</p>
+<h2 id="第一步：安装-LM-Studio"><a href="#第一步：安装-LM-Studio" class="headerlink" title="第一步：安装 LM Studio"></a>第一步：安装 LM Studio</h2><p>打开 LM Studio 官网下载安装包：</p>
+<p><a target="_blank" rel="noopener" href="https://lmstudio.ai/">https://lmstudio.ai/</a></p>
+<p>下载 macOS 版本后，像安装普通 Mac 应用一样把它拖到 Applications 目录。第一次启动时，系统可能会提示安全确认，按提示允许即可。</p>
+<p>安装完成后，打开 LM Studio。你会看到类似“聊天”“模型搜索”“本地服务”“开发者工具”等入口。第一次使用时不需要急着改设置，先确认应用能正常打开即可。</p>
+<h2 id="第二步：下载-Gemma-4-模型"><a href="#第二步：下载-Gemma-4-模型" class="headerlink" title="第二步：下载 Gemma 4 模型"></a>第二步：下载 Gemma 4 模型</h2><p>在 LM Studio 中下载模型有两种常见方式。</p>
+<p>第一种是在 LM Studio 内搜索模型。打开模型搜索页面，输入：</p>
+<pre><code class="text">gemma 4
+</code></pre>
+<p>然后根据机器配置选择合适的版本。一般来说，模型越大，效果越好，但内存占用越高、速度也可能越慢。量化等级也会影响体积和效果，常见选择包括 Q4、Q5、Q6、Q8 等。</p>
+<p>如果你只是想先跑通流程，可以优先选择较小或中等大小的指令微调版本，例如带有 <code>it</code> 或 <code>instruct</code> 标识的模型。</p>
+<p>第二种方式是从 Hugging Face 或 Google 相关模型页面打开 LM Studio。如果模型页面提供 “Use this model” 或 LM Studio 入口，可以直接交给 LM Studio 下载和导入。</p>
+<h2 id="如何选择模型版本"><a href="#如何选择模型版本" class="headerlink" title="如何选择模型版本"></a>如何选择模型版本</h2><p>选择模型时，可以参考下面的经验：</p>
+<table>
+<thead>
+<tr>
+<th>Mac 配置</th>
+<th>推荐尝试</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>8GB 内存</td>
+<td>小模型、低量化、较短上下文</td>
+</tr>
+<tr>
+<td>16GB 内存</td>
+<td>E4B、12B 的量化版本</td>
+</tr>
+<tr>
+<td>24GB 到 32GB 内存</td>
+<td>12B 或 26B 的中等量化版本</td>
+</tr>
+<tr>
+<td>64GB 及以上内存</td>
+<td>可以尝试 26B、31B 等更大模型</td>
+</tr>
+</tbody></table>
+<p>如果不确定，从较小模型开始是最稳妥的。先验证下载、加载、对话和 API 调用流程，再逐步换成更大的模型。</p>
+<h2 id="第三步：在-LM-Studio-中加载模型"><a href="#第三步：在-LM-Studio-中加载模型" class="headerlink" title="第三步：在 LM Studio 中加载模型"></a>第三步：在 LM Studio 中加载模型</h2><p>模型下载完成后，进入聊天页面或 Developer 页面，选择刚刚下载的 Gemma 4 模型并加载。</p>
+<p>LM Studio 通常会根据当前 Mac 的硬件自动选择较合适的加载参数。你也可以手动调整：</p>
+<ul>
+<li>Context Length：上下文长度。越大越能处理长文本，但越吃内存。</li>
+<li>GPU Offload：尽量让计算走 Apple Silicon 的 GPU/Metal，加快推理速度。</li>
+<li>Temperature：控制回答的随机性。写作可以稍高，代码和事实问答可以稍低。</li>
+</ul>
+<p>加载成功后，在聊天框输入一句测试问题：</p>
+<pre><code class="text">请用三句话介绍你自己。
+</code></pre>
+<p>如果模型能正常回复，就说明本地聊天已经跑通。</p>
+<h2 id="第四步：启动本地-API-Server"><a href="#第四步：启动本地-API-Server" class="headerlink" title="第四步：启动本地 API Server"></a>第四步：启动本地 API Server</h2><p>LM Studio 不只是聊天工具，也可以把本地模型作为 API 服务暴露出来，供脚本、应用或开发工具调用。</p>
+<p>在 LM Studio 图形界面中，可以进入 Developer 页面，加载模型后启动本地服务。默认端口通常是：</p>
+<pre><code class="text">1234
+</code></pre>
+<p>启动后，你可以通过本地地址访问模型服务：</p>
+<pre><code class="text">http://localhost:1234
+</code></pre>
+<p>如果安装了 LM Studio 的命令行工具，也可以使用 <code>lms</code> 启动服务：</p>
+<pre><code class="bash">lms server start --port 1234
+</code></pre>
+<p>查看本地已下载模型：</p>
+<pre><code class="bash">lms ls
+</code></pre>
+<p>加载某个模型：</p>
+<pre><code class="bash">lms load &lt;model_key&gt;
+</code></pre>
+<p>这里的 <code>&lt;model_key&gt;</code> 可以通过 <code>lms ls</code> 查看。</p>
+<h2 id="第五步：通过-API-调用-Gemma-4"><a href="#第五步：通过-API-调用-Gemma-4" class="headerlink" title="第五步：通过 API 调用 Gemma 4"></a>第五步：通过 API 调用 Gemma 4</h2><p>启动本地服务后，可以用 HTTP 请求调用模型。不同版本的 LM Studio API 可能会有细节差异，建议以 LM Studio Developer 页面显示的接口为准。</p>
+<p>一个典型调用方式如下：</p>
+<pre><code class="bash">curl http://localhost:1234/api/v1/chat \
+  -H &quot;Content-Type: application/json&quot; \
+  -d &#39;&#123;
+    &quot;model&quot;: &quot;your-loaded-gemma4-model&quot;,
+    &quot;input&quot;: &quot;请写一段关于本地大模型部署的简介。&quot;
+  &#125;&#39;
+</code></pre>
+<p>如果你使用的是 OpenAI 兼容接口，也可能会用到类似下面的格式：</p>
+<pre><code class="bash">curl http://localhost:1234/v1/chat/completions \
+  -H &quot;Content-Type: application/json&quot; \
+  -d &#39;&#123;
+    &quot;model&quot;: &quot;your-loaded-gemma4-model&quot;,
+    &quot;messages&quot;: [
+      &#123;
+        &quot;role&quot;: &quot;user&quot;,
+        &quot;content&quot;: &quot;请用中文解释 Gemma 4 适合哪些本地应用场景。&quot;
+      &#125;
+    ],
+    &quot;temperature&quot;: 0.7
+  &#125;&#39;
+</code></pre>
+<p>实际使用时，把 <code>model</code> 替换成 LM Studio 中显示的已加载模型名称即可。</p>
+<h2 id="常见应用场景"><a href="#常见应用场景" class="headerlink" title="常见应用场景"></a>常见应用场景</h2><p>本地部署 Gemma 4 后，可以用于很多轻量但实用的任务：</p>
+<ul>
+<li>本地知识库问答</li>
+<li>Markdown 博文草稿生成</li>
+<li>代码解释和代码片段生成</li>
+<li>日志分析和错误排查</li>
+<li>英文技术文档摘要</li>
+<li>私有文本的离线处理</li>
+<li>搭建本地 Agent 或自动化助手</li>
+</ul>
+<p>本地模型最大的优点是数据不需要离开自己的机器。对于私人笔记、内部文档、实验性代码和离线环境，这一点很有价值。</p>
+<h2 id="性能优化建议"><a href="#性能优化建议" class="headerlink" title="性能优化建议"></a>性能优化建议</h2><p>如果模型运行比较慢，可以尝试以下优化：</p>
+<ul>
+<li>换用更小的模型版本</li>
+<li>使用更低位宽的量化模型，例如 Q4 或 Q5</li>
+<li>降低 Context Length</li>
+<li>关闭其他占用大量内存的软件</li>
+<li>在 LM Studio 中提高 GPU Offload</li>
+<li>优先尝试 MLX 格式模型</li>
+</ul>
+<p>如果出现模型加载失败，通常可以从几个方向排查：</p>
+<ul>
+<li>当前 LM Studio 版本是否太旧</li>
+<li>模型格式是否被当前后端支持</li>
+<li>Mac 内存是否不足</li>
+<li>上下文长度是否设置过大</li>
+<li>是否下载了损坏或不完整的模型文件</li>
+</ul>
+<p>Gemma 4 属于较新的模型系列，如果遇到大模型版本加载失败，可以先升级 LM Studio，再尝试较小版本或不同格式的模型。</p>
+<h2 id="本地部署的优缺点"><a href="#本地部署的优缺点" class="headerlink" title="本地部署的优缺点"></a>本地部署的优缺点</h2><p>本地部署的优点很明显：</p>
+<ul>
+<li>数据留在本机</li>
+<li>没有云端 API 调用成本</li>
+<li>离线也能使用</li>
+<li>可以自由试验模型参数</li>
+<li>适合和本地工具链集成</li>
+</ul>
+<p>但它也有局限：</p>
+<ul>
+<li>受限于本机内存和算力</li>
+<li>大模型推理速度可能不如云端</li>
+<li>模型下载体积较大</li>
+<li>需要自己处理版本兼容问题</li>
+<li>效果取决于模型大小、量化质量和提示词设计</li>
+</ul>
+<p>因此，本地 Gemma 4 更适合作为开发、学习、草稿、私有数据处理和轻量 Agent 的基础。如果要做高并发生产服务，仍然需要更完整的部署和监控方案。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>使用 LM Studio 在 macOS 上部署 Gemma 4，整体流程并不复杂：</p>
+<ol>
+<li>安装 LM Studio</li>
+<li>下载合适的 Gemma 4 模型</li>
+<li>在界面中加载模型并测试对话</li>
+<li>启动本地 API Server</li>
+<li>通过 HTTP 或本地应用调用模型</li>
+</ol>
+<p>对于 Mac 用户来说，这是一条非常适合入门本地大模型的路径。LM Studio 降低了部署门槛，Gemma 4 提供了不错的模型能力，两者结合后，可以很快搭建出一个可聊天、可编程调用、可离线运行的本地 AI 环境。</p>
+<p>如果你只是想体验本地 LLM，从小模型开始；如果你想做工具集成，再打开 API Server；如果你想长期使用，再根据自己的 Mac 配置慢慢调整模型大小、量化版本和上下文长度。</p>
+<p>本地大模型的乐趣就在这里：它不一定一步到位，但每调通一环，你的 Mac 就多了一点可以自己思考和协作的能力。</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://deepmind.google/models/gemma/gemma-4/">Gemma 4 - Google DeepMind</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.google/innovation-and-ai/technology/developers-tools/gemma-4/">Gemma 4 发布介绍</a></li>
+<li><a target="_blank" rel="noopener" href="https://ai.google.dev/gemma/docs/integrations/lmstudio">Run Gemma with LM Studio</a></li>
+<li><a target="_blank" rel="noopener" href="https://lmstudio.ai/">LM Studio 官网</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.lmstudio.ai/docs/app/system-requirements">LM Studio 系统要求</a></li>
+<li><a target="_blank" rel="noopener" href="https://lmstudio.ai/docs/cli">LM Studio CLI 文档</a></li>
+</ul>
+
+      </div>
+      
+        <div class="copyright">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+    <strong>作者:  </strong>Melvin.Lee</a>
+    </li>
+    <li class="post-copyright-link">
+    <strong>文章链接:  </strong>
+    <a href="/2026/05/08/2674/" target="_blank" title="使用 LM Studio 在 macOS 上本地部署 Gemma 4">https://lmfeng.com/2026/05/08/2674/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明:   </strong>
+      本网站所有文章除特别声明外,均采用 <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+      许可协议。转载请注明出处!
+    </li>
+  </ul>
+<div>
+      
+    </article>
+    <!-- 上一篇文章和下一篇文章 -->
+    
+      
+<div class="post-nav">
+
+
+
+  
+  <div class="post-nav-prev post-nav-item">
+    <div class="post-nav-img lazyload" data-original="/img/AfD-Android-17.gif" style="background-size: cover; 
+      background-position: center center;">
+    </div>
+    <a href="/2026/06/22/2673/" class="post-nav-link">
+      <div class="title">
+        <i class="fa fa-angle-left"></i> 上一篇:
+        <div>Android 17 正式发布：面向智能系统、自适应体验与新一代隐私安全</div>
+      </div>
+      
+      <!-- <div class="content">
+        
+原文： Android 17 is here来源：Android Developers Blog，发布于 2026 年
+      </div> -->
+    </a>
+  </div>
+
+
+
+  
+  <div class="post-nav-next post-nav-item">
+    <div class="post-nav-img lazyload" data-original="/medias/2.jpg" style="background-size: cover; 
+      background-position: center center;">
+    </div>
+    <a href="/2026/04/07/2675/" class="post-nav-link">
+      <div class="title">
+        下一篇: <i class="fa fa-angle-right"></i>
+        <div>什么是 MCP 服务</div>
+      </div>
+      <!-- <div class="content">
+        随着大语言模型和 AI Agent 的普及，一个新的概念越来越频繁地出现在开发者视野中：MCP 服务。
+MCP 的全称是
+      </div> -->
+    </a>
+  </div>
+
+</div>
+
+    
+    
+
+    <!-- 打赏 -->
+    
+
+    <!-- 分享 -->
+    
+    
+    <!-- 评论 -->
+      
+        <div id="myComment">
+          
+        </div>
+      
+  </div>
+
+  
+    <div class="toc-aside">
+      <div class="toc-main">
+        <div class="toc-aside-title">
+          <i class="fa fa-list-ul" aria-hidden="true"></i><span>本文目录</span>
+          <div class="toc-open-close">本文目录</div>
+        </div>
+        <div class="toc-content">
+          <link href="/js/tocbot/tocbot.css" rel="stylesheet">
+<script src="/js/tocbot/tocbot.min.js"></script>
+<div class="toc"></div>
+
+<script>
+  if ($('.toc').length > 0) {
+    var headerEl = 'h2, h3, h4',  //headers 
+      content = '.post-detail',//文章容器
+      idArr = {};  //标题数组以确定是否增加索引id
+      //add #id
+
+    $(content).children(headerEl).each(function () {
+      //去除空格以及多余标点
+      var headerId = $(this).text().replace(/[\s|\~|`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\_|\+|\=|\||\|\[|\]|\{|\}|\;|\:|\"|\'|\,|\<|\.|\>|\/|\?|\：|\，|\。]/g, '');
+
+      headerId = headerId.toLowerCase();
+      if (idArr[headerId]) {
+        //id已经存在
+        $(this).attr('id', headerId + '-' + idArr[headerId]);
+        idArr[headerId]++;
+      }
+      else {
+        //id未存在
+        idArr[headerId] = 1;
+        $(this).attr('id', headerId);
+      }
+    });
+
+    tocbot.init({
+      // Where to render the table of contents.
+      tocSelector: '.toc',
+      // Where to grab the headings to build the table of contents.
+      contentSelector: content,
+      // Which headings to grab inside of the contentSelector element.
+      headingSelector: headerEl,
+      scrollSmooth: true,
+      scrollSmoothOffset: -80,
+      headingsOffset: 130,
+      positionFixedSelector: '.toc-main',
+      positionFixedClass: 'is-position-fixed',
+      fixedSidebarOffset: 'auto',
+    });
+  }
+
+</script>
+
+<style>
+.is-position-fixed {
+  position:fixed !important;
+  top: 64px;
+}
+.toc-main ul {
+  counter-reset: show-list;
+}
+.toc-main ul li::before {
+  content: counter(item)".";
+  display: block;
+  position: absolute;
+  left: 12px;
+  top:0;
+}
+.toc > .toc-list {
+  padding-left: 35px;
+}
+.toc>.toc-list li {
+  list-style: decimal;
+}
+.toc-list {
+  padding-left: 25px;
+}
+</style>
+        </div>
+      </div>
+    </div>
+
+    
+
+    <script>
+      let openOrCloseBtn = $('.toc-aside .toc-aside-title .toc-open-close');
+      let open = eval('' || 'true');
+      openOrCloseBtn.click(function() {
+        if (open === true) {
+          $(".toc-aside").css({'width': 0, 'padding': 0});
+          $(".toc-content").css({'width': 0});
+          $(".toc-aside-title span, .toc-aside-title i").css({'display': 'none'});
+          $(".main-content").css({'width': '75%', 'margin': '10px auto'});
+          open = false;
+        } else {
+          $(".toc-aside").css({'width': '300px', 'padding': '0 10px'});
+          $(".toc-content").css({'width': '300px'});
+          $(".toc-aside-title span, .toc-aside-title i").css({'display': 'inline-block'});
+          $(".main-content").css({'width': '65%', 'margin-right': '10px', 'margin-left': 'calc(35% - 350px)'});
+          open = true;
+        }
+      });
+    </script>
+  
+</div>
+
+
+    </main>
+    <div class="footer bg-color">
+  <div class="footer-main">
+<!--    <div class="link">
+      <a target="_blank" rel="noopener" href="https://github.com/yuang01/hexo-theme-bamboo">
+        <i class="fa fa-github" aria-hidden="true"></i>
+      </a>
+      <a href="mailto:1730241541@qq.com">
+        <i class="fa fa-envelope-o" aria-hidden="true"></i>
+      </a>
+      <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1730241541">
+        <i class="fa fa-qq" aria-hidden="true"></i>
+      </a>
+      <a href="/atom.xml" target="_blank">
+        <i class="fa fa-rss" aria-hidden="true"></i>
+      </a>
+    </div>
+-->
+    <div class="footer-copyright">
+      Copyright © 2015 - 2026 <a href="/about">Melvin</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> 
+    </div>
+    
+  </div>
+</div>
+
+
+    
+      <div class="goTop top-btn-color border-color">
+  <i class="fa fa-arrow-up" aria-hidden="true"></i>
+</div>
+<script src="/js/goTop.js"></script>
+    
+
+    
+
+    <!-- 图片放大 -->
+    
+      <script src="/js/fancybox/jquery.fancybox.min.js"></script>
+    
+
+    <script src="/js/wrapImage.js"></script>
+    
+    <!-- 爱心点击 -->
+    
+      
+        <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 999; pointer-events: none;" ></canvas>
+        <script src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+        <script src="/js/cursor/explosion.min.js"></script>
+      
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script type="text/javascript" size="100" alpha='0.4' zIndex="-1" src="/js/ribbon.min.js"></script>
+    
+      <script src="/js/aos/aos.js"></script>
+      <script>
+        // https://github.com/michalsnik/aos
+        const themeOffset = parseInt('120') || 120;
+        const themeDelay = parseInt('0')|| 0;
+        const themeDuration = parseInt('400') || 400;
+        const themeEasing = 'ease' || 'ease';
+        const themeOnce = eval('true') || false;
+        const themeMirror = eval('false') || false;
+        const themeAnchorPlacement = 'top-bottom' || 'top-bottom';
+        AOS.init({
+          // Global settings:
+          disable: false, // accepts following values: 'phone', 'tablet', 'mobile', boolean, expression or function
+          startEvent: 'DOMContentLoaded', // name of the event dispatched on the document, that AOS should initialize on
+          initClassName: 'aos-init', // class applied after initialization
+          animatedClassName: 'aos-animate', // class applied on animation
+          useClassNames: false, // if true, will add content of `data-aos` as classes on scroll
+          disableMutationObserver: false, // disables automatic mutations' detections (advanced)
+          debounceDelay: 50, // the delay on debounce used while resizing window (advanced)
+          throttleDelay: 99, // the delay on throttle used while scrolling the page (advanced)
+
+          // Settings that can be overridden on per-element basis, by `data-aos-*` attributes:
+          offset: themeOffset, // offset (in px) from the original trigger point
+          delay: themeDelay, // values from 0 to 3000, with step 50ms
+          duration: themeDuration, // values from 0 to 3000, with step 50ms
+          easing: themeEasing, // default easing for AOS animations
+          once: themeOnce, // whether animation should happen only once - while scrolling down
+          mirror: themeMirror, // whether elements should animate out while scrolling past them
+          anchorPlacement: themeAnchorPlacement, // defines which position of the element regarding to window should trigger the animation
+
+        });
+      </script>
+    
+
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/v-plugs-ayu/lib/ayu.css">
+<script src="https://cdn.jsdelivr.net/npm/v-plugs-ayu/lib/ayu.umd.min.js"></script>
+<div id="appCopy">
+</div>
+<script>
+  var vm = new Vue({
+    el: '#appCopy',
+    data: {
+    },
+    computed: {
+    },
+    mounted() {
+      const that = this;
+      //  监听 ctrl + c事件  
+      $(document).unbind('keypress').bind('keypress', function (e) {
+        if (e.ctrlKey && e.keyCode == 67) {
+          doSomething();
+          // 返回false, 防止重复触发copy事件  
+          return false;
+        }
+      })
+
+      // 鼠标右键的复制事件  
+      $(document).unbind('copy').bind('copy', function (e) {
+        doSomething();
+        // console.log('右键复制 监听成功');
+      });
+
+      function doSomething() {
+        that.$notify({
+          title: "成功",
+          content: "代码已复制，请遵守相关授权协议。",
+          type: 'success'
+        })
+        // console.log('ctrl + c 监听成功');  
+      }
+    },
+    methods: {
+    },
+    created() { }
+  })
+</script>
+    
+
+    <!-- 输入框打字特效 -->
+    
+      <script src="/js/activate-power-mode.js"></script>
+      <script>
+          POWERMODE.colorful = true;  // 打开随机颜色特效
+          POWERMODE.shake = false;    // 关闭输入框抖动
+          document.body.addEventListener('input', POWERMODE);//监听打字事件
+      </script>
+    
+
+    <!-- markdown代码一键复制功能 -->
+    <script src="/js/clipboard/clipboard.min.js"></script>
+    <script>
+      !function (e, t, a) {
+        var copy = '复制';
+        /* code */
+        var initCopyCode = function(){
+          var copyHtml = '';
+          copyHtml += '<button class="btn-copy" data-clipboard-snippet="" style="position:absolute;top:0;right:0;z-index:1;">';
+          copyHtml += '<i class="fa fa-copy"></i><span>' + copy + '</span>';
+          copyHtml += '</button>';
+          $(".post-detail pre").not('.gutter pre').wrap("<div class='codeBox' style='position:relative;width:100%;'></div>")
+          $(".post-detail pre").not('.gutter pre').before(copyHtml);
+          new ClipboardJS('.btn-copy', {
+              target: function(trigger) {
+                  return trigger.nextElementSibling;
+              }
+          });
+        }
+        initCopyCode();
+      }(window, document);
+    </script>
+
+    <script src="/js/lazyload/lazyload@1.9.1.js"></script>
+    <script>
+      $(function() {
+        $("div.lazyload, img.lazyload, a.lazyload").lazyload(
+            {
+                effect: "fadeIn",
+                placeholder: "https://img10.360buyimg.com/ddimg/jfs/t1/159345/8/2271/222193/5ff7b36fEe49f5663/a95287c20385127f.gif"    //图片未加载出来时显示的占位图
+            }
+        );
+    });
+    </script>
+    
+    <script src="/js/app.js"></script>
+  </body>
+</html>

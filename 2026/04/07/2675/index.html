@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html>
+  
+
+
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+  <title>什么是 MCP 服务 | 😄豐De个人博客</title>
+
+  
+    
+<link rel="stylesheet" href="/js/aos/aos.css">
+
+  
+
+  <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
+  <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  
+    <script>
+        var themeModelId = '';
+        if (themeModelId) {
+            localStorage.setItem('modelId', themeModelId);
+        }
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/gh/yuang01/live2d-widget@latest/autoload.js"></script>
+    <script>
+        var live2dOpen = eval('true') || false;
+        if (!live2dOpen) {
+            localStorage.setItem('waifu-display', 1609323474481);
+        }
+    </script>
+  
+  
+<link rel="stylesheet" href="/css/animate.min.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+    
+<link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css">
+
+  
+  
+  <style>
+        @media (max-width: 992px) {
+            #waifu {
+                display: none;
+            }
+        }
+    </style>
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+  <script src="/js/jquery3.5.1.js"></script>
+  <script src="/js/vue2.6.11.js"></script>
+  <link href="/js/danmu/barrager.css" rel="stylesheet">
+<script src="/js/danmu/jquery.barrager.js"></script>
+  <body>
+    <!-- 判断是否为黑夜模式 -->
+    <script>
+      let isDark = JSON.parse(localStorage.getItem('dark')) || JSON.parse('false');
+
+      if (isDark) {
+        $(document.body).addClass('darkModel');
+      }
+    </script>
+
+    <header class="header bg-color" 
+  style="position: fixed; 
+  left: 0; top: 0; z-index: 10;width: 100%;"
+>
+  <div class="header-content">
+    <div class="bars">
+      <div id="appDrawer" class="sidebar-image">
+  <i class="fa fa-bars" aria-hidden="true" @click="showDialogDrawer"></i>
+  <transition name="fade">
+    <div class="drawer-box_mask" v-cloak style="display: none;" v-show="visible" @click.self="cancelDialogDrawer">
+    </div>
+  </transition>
+  <div class="drawer-box" :class="{'active': visible}">
+    <div class="drawer-box-head bg-color">
+      <img class="drawer-box-head_logo" src="/medias/logo.png" alt="logo">
+      <h3 class="drawer-box-head_title">😄豐De个人博客</h3>
+      <h5 class="drawer-box-head_desc">Lmfeng Blog</h5>
+    </div>
+    <div class="drawer-box-content">
+      <ul class="drawer-box-content_menu">
+        
+          <li class="drawer-box-content_item">
+            <a href="/" class="menu-item-link">
+              
+                <i class="fa fa-home" aria-hidden="true"></i>
+              
+              <span>首页</span>
+            </a>
+          </li>
+        
+          <li class="drawer-box-content_item">
+            <a href="/archives" class="menu-item-link">
+              
+                <i class="fa fa-home" aria-hidden="true"></i>
+              
+              <span>归档</span>
+            </a>
+          </li>
+        
+          <li class="drawer-box-content_item">
+            <a href="/tags" class="menu-item-link">
+              
+                <i class="fa fa-tags" aria-hidden="true"></i>
+              
+              <span>标签</span>
+            </a>
+          </li>
+        
+          <li class="drawer-box-content_item">
+            <a href="/categories" class="menu-item-link">
+              
+                <i class="fa fa-bookmark" aria-hidden="true"></i>
+              
+              <span>分类</span>
+            </a>
+          </li>
+        
+          <li class="drawer-box-content_item">
+            <a href="/about" class="menu-item-link">
+              
+                <i class="fa fa-user" aria-hidden="true"></i>
+              
+              <span>关于</span>
+            </a>
+          </li>
+        
+          <li class="drawer-box-content_item">
+            <a target="_blank" rel="noopener" href="https://developer.android.google.cn/" class="menu-item-link">
+              
+                <i class="fa fa-link" aria-hidden="true"></i>
+              
+              <span>友情链接</span>
+            </a>
+          </li>
+        
+        <li class="drawer-box-content_item">
+          <a target="_blank" rel="noopener" href="https://github.com/melvin11112015/">
+            <i class="fa fa-github" aria-hidden="true"></i>
+            <span>Github</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+  var body = document.body || document.documentElement || window;
+  var vm = new Vue({
+    el: '#appDrawer',
+    data: {
+      visible: false,
+      top: 0,
+    },
+    computed: {
+    },
+    mounted() {
+    },
+    methods: {
+      showDialogDrawer() {
+        this.visible = true;
+        // 防止页面滚动，只能让弹框滚动
+        this.top = $(document).scrollTop()
+        body.style.cssText = 'width: 100%; height: 100%; position: fixed; top: -' + this.top  + 'px; left: 0; overflow: hidden;';
+      },
+      cancelDialogDrawer() {
+        this.visible = false;
+        body.removeAttribute('style');
+        $(document).scrollTop(this.top)
+      }
+    },
+    created() {}
+  })
+</script>
+    </div>
+    <div class="blog-title" id="author-avatar">
+      <div class="avatar">
+        <img src="/medias/logo.png" alt="logo">
+      </div>
+      <a href="/" class="logo">😄豐De个人博客</a>
+    </div>
+    <nav class="navbar">
+      <ul class="menu">
+        
+          <li class="menu-item">
+            <a href="/" class="menu-item-link">
+              
+                <i class="fa fa-home" aria-hidden="true"></i>
+              
+              <span>首页</span>
+            </a>
+          </li>
+        
+          <li class="menu-item">
+            <a href="/archives" class="menu-item-link">
+              
+                <i class="fa fa-archive" aria-hidden="true"></i>
+              
+              <span>归档</span>
+            </a>
+          </li>
+        
+          <li class="menu-item">
+            <a href="/tags" class="menu-item-link">
+              
+                <i class="fa fa-tags" aria-hidden="true"></i>
+              
+              <span>标签</span>
+            </a>
+          </li>
+        
+          <li class="menu-item">
+            <a href="/categories" class="menu-item-link">
+              
+                <i class="fa fa-bookmark" aria-hidden="true"></i>
+              
+              <span>分类</span>
+            </a>
+          </li>
+        
+          <li class="menu-item">
+            <a href="/about" class="menu-item-link">
+              
+                <i class="fa fa-user" aria-hidden="true"></i>
+              
+              <span>关于</span>
+            </a>
+          </li>
+        
+          <li class="menu-item">
+            <a target="_blank" rel="noopener" href="https://developer.android.google.cn/" class="menu-item-link">
+              
+                <i class="fa fa-link" aria-hidden="true"></i>
+              
+              <span>友情链接</span>
+            </a>
+          </li>
+        
+      </ul>
+      
+        <div class="dark">
+  <div class="dark-content">
+    <i class="fa fa-moon-o" aria-hidden="true"></i>
+    <!-- <span>关灯</span> -->
+  </div>
+  
+</div>
+
+<script>
+  $(function() {
+    let isDark = JSON.parse(localStorage.getItem('dark'))  || JSON.parse('false');
+    if (isDark) {
+      $(".dark-content").replaceWith(
+          `
+          <div class='dark-content'>
+            <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+          </div>
+          `
+        );
+    }
+    $('.dark').click(function() {
+      if ($(document.body).is('.darkModel')) {
+        $(document.body).removeClass('darkModel');
+        localStorage.setItem('dark', false);
+        $(".dark-content").replaceWith(
+          `
+          <div class='dark-content'>
+            <i class="fa fa-moon-o" aria-hidden="true"></i>
+          </div>
+          `
+        );
+      } else {
+        $(document.body).addClass('darkModel');
+        localStorage.setItem('dark', true);
+        $(".dark-content").replaceWith(
+          `
+          <div class='dark-content'>
+            <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+          </div>
+          `
+        );
+      }
+    })
+  })
+</script>
+        
+      
+        <div id="appSearch">
+  <div class="search"  @click="showDialog()"><i class="fa fa-search" aria-hidden="true"></i></div>
+  <transition name="fade">
+    <div class="message-box_wrapper" style="display: none;" v-cloak v-show="dialogVisible" @click.self="cancelDialogVisible()">
+      <div class="message-box animated bounceInDown">
+        <div class="close" style="overflow: hidden;">
+          <i class="fa fa-close" aria-hidden="true" style="float:right;" @click.self="cancelDialogVisible()"></i>
+        </div>
+        <h2>
+          <i class="fa fa-search" aria-hidden="true"></i>
+          <span class="title">本地搜索</span>
+          <!-- <i class="fa fa-close" style="float:right;" aria-hidden="true" @click.self="cancelDialogVisible()"></i> -->
+        </h2>
+        <form class="site-search-form">
+          <input type="text"
+            placeholder="请输入关键字"
+            id="local-search-input" 
+            @click="getSearchFile()"
+            class="st-search-input"
+            v-model="searchInput"
+          />
+        </form>
+        <div class="result-wrapper">
+          <div id="local-search-result" class="local-search-result-cls"></div>
+        </div>
+      </div>
+    </div>
+  </transition>
+</div>
+<script src="/js/local_search.js"></script>
+<script>
+  var body = document.body || document.documentElement || window;
+  var vm = new Vue({
+    el: '#appSearch',
+    data: {
+      dialogVisible: false,
+      searchInput: '',
+      top: 0,
+    },
+    computed: {
+    },
+    mounted() {
+    },
+    methods: {
+      showDialog() {
+        this.dialogVisible = true;
+        // 防止页面滚动，只能让弹框滚动
+        this.top = $(document).scrollTop()
+        body.style.cssText = 'overflow: hidden;';
+      },
+      getSearchFile() {
+        if (!this.searchInput) {
+          getSearchFile("/search.xml");
+        }
+      },
+      cancelDialogVisible() {
+        this.dialogVisible = false;
+        body.removeAttribute('style');
+        $(document).scrollTop(this.top)
+      },
+    },
+    created() {}
+  })
+</script>
+<!-- 解决刷新页面闪烁问题，可以在元素上添加display: none, 或者用vue.extend方法，详情：https://blog.csdn.net/qq_31393401/article/details/81017912 -->
+<!-- 下面是搜索基本写法 -->
+<!-- <script type="text/javascript" id="local.search.active">
+  var inputArea = document.querySelector("#local-search-input");
+  inputArea.onclick   = function(){ getSearchFile(); this.onclick = null }
+  inputArea.onkeydown = function(){ if(event.keyCode == 13) return false }
+</script> -->
+
+      
+
+    </nav>
+  </div>
+  
+  <a target="_blank" rel="noopener" href="https://github.com/melvin11112015/" class="github-corner color-primary" aria-label="View source on GitHub"><svg width="60" height="60" viewBox="0 0 250 250" style="fill:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+  
+    <div id="he-plugin-simple"></div>
+    <script>
+      WIDGET = {
+        CONFIG: {
+          "modules": "012",
+          "background": 5,
+          "tmpColor": "4A4A4A",
+          "tmpSize": 16,
+          "cityColor": "4A4A4A",
+          "citySize": 16,
+          "aqiSize": 16,
+          "weatherIconSize": 24,
+          "alertIconSize": 18,
+          "padding": "10px 10px 10px 10px",
+          "shadow": "1",
+          "language": "auto",
+          "borderRadius": 5,
+          "fixed": "false",
+          "vertical": "middle",
+          "horizontal": "center",
+          "key": "2784dd3fcb1e4f0f9a9b579bf69641f2"
+        }
+      }
+    </script>
+    <script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script> 
+    
+</header>
+    <main class="main" style="margin-top: 60px;">
+      
+ <!-- prismjs 代码高亮 -->
+ 
+
+<div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -1;"></div>
+<div id="appBgSwiper" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;" :style="{'background-color': bgColor ? bgColor : 'transparent'}">
+    <transition-group tag="ul" :name="names">
+        <li v-for='(image,index) in img' :key='index' v-show="index === mark" class="bg-swiper-box">
+            <img :src="image" class="bg-swiper-img">
+        </li>
+    </transition-group>
+</div>
+<script>
+    var vm = new Vue({
+        el: '#appBgSwiper',
+        data: {
+            names: '' || 'fade' || 'fade', // translate-fade fade
+            mark: 0,
+            img: [],
+            bgColor: '',
+            time: null
+        },
+        methods: {   //添加方法
+            change(i, m) {
+                if (i > m) {
+                    // this.names = 'fade';
+                } else if (i < m) {
+                    // this.names = 'fade';
+                } else {
+                    return;
+                }
+                this.mark = i;
+            },
+            prev() {
+                // this.names = 'fade';
+                this.mark--;
+                if (this.mark === -1) {
+                    this.mark = 3;
+                    return
+                }
+            },
+            next() {
+                // this.names = 'fade';
+                this.mark++;
+                if (this.mark === this.img.length) {
+                    this.mark = 0;
+                    return
+                }
+            },
+            autoPlay() {
+                // this.names = 'fade';
+                this.mark++;
+                if (this.mark === this.img.length) {
+                    this.mark = 0;
+                    return
+                }
+            },
+            play() {
+                let bgImgDelay = '' || '180000'
+                let delay = parseInt(bgImgDelay) || 180000;
+                this.time = setInterval(this.autoPlay, delay);
+            },
+            enter() {
+                clearInterval(this.time);
+            },
+            leave() {
+                this.play();
+            }
+        },
+        created() {
+            this.play()
+        },
+        beforeDestroy() {
+            clearInterval(this.time);
+        },
+        mounted() {
+            let prop = ''|| '';
+            let isImg = prop.includes('.bmp') || prop.includes('.jpg') || prop.includes('.png') || prop.includes('.tif') || prop.includes('.gif') || prop.includes('.pcx') || prop.includes('.tga') || prop.includes('.exif') || prop.includes('.fpx') || prop.includes('.psd') || prop.includes('.cdr') || prop.includes('.pcd') || prop.includes('.dxf') || prop.includes('.ufo') || prop.includes('.eps') || prop.includes('.ai') || prop.includes('.raw') || prop.includes('.WMF') || prop.includes('.webp') || prop.includes('.jpeg')
+            if (isImg) {
+                let img = prop.split(',');
+                let configRoot = '/'
+                let arrImg = [];
+                img.forEach(el => {
+                    var Expression=/http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+			        var objExp = new RegExp(Expression);
+
+                    if(objExp.test(el)) {
+                        // http or https
+                        arrImg.push(el);
+                    } else {
+                        // 非http or https开头
+                        // 本地文件
+                        let firstStr = el.charAt(0);
+                        if (firstStr == '/') {
+                            el = el.substr(1); // 删除第一个字符 '/',因为 configRoot最后一个字符为 /
+                        }
+                        el = configRoot + el;
+                        arrImg.push(el);
+                    }
+                })
+                this.img = arrImg;
+            } else {
+                this.bgColor = prop;
+            }
+        }
+    })
+</script>
+
+<style>
+    .bg-swiper-box {
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+    .bg-swiper-img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+    }
+</style>
+
+
+
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/2.jpg" style="background-repeat: no-repeat; background-size: cover; 
+  background-position: center center;position: relative;">
+  <div class="post-detail-header-mask"></div>
+  <canvas id="header_canvas"style="position:absolute;bottom:0"></canvas>
+  
+    <div class="title-box">
+      
+        <span class="title" id="post-detail-header-title"></span>
+        <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+          <script>
+            var typed = new Typed("#post-detail-header-title", {
+              strings: ['什么是 MCP 服务'],
+              startDelay: 100,
+              typeSpeed: 100,
+              loop: false,
+              backSpeed: 50,
+              showCursor: false
+            });
+          </script>
+        
+    </div>
+  
+  
+  
+    <script src="/js/bubble/bubble.js"></script>
+  
+</div>
+
+
+<div class="row justify-position">
+  <div class="main-content">
+    <article class="post post-detail">
+      
+      
+      <div class="post-meta">
+        <i class="fa fa-clock-o" aria-hidden="true"></i>
+        <span class="post-time">2026-04-07</span>
+      </div>
+      
+      <div class="post-tags-categories">
+        
+        <div class="tags">
+          <i class="iconfont icontag"></i>
+          
+            <a href="/tags/MCP/" class="">
+              MCP
+            </a>
+          
+            <a href="/tags/AI-Agent/" class="">
+              AI Agent
+            </a>
+          
+        </div>
+        
+        
+        <div class="categories">
+          <i class="iconfont iconbookmark1"></i>
+          
+            <a href="/categories/AI/" class="">
+              AI
+            </a>
+          
+        </div>
+        
+      </div>
+      <div class="post-content">
+        <p>随着大语言模型和 AI Agent 的普及，一个新的概念越来越频繁地出现在开发者视野中：MCP 服务。</p>
+<p>MCP 的全称是 Model Context Protocol，中文可以理解为“模型上下文协议”。它的目标是为 AI 模型和外部工具、数据源、系统能力之间建立一种标准连接方式。简单说，MCP 服务就是让 AI 能够安全、稳定、结构化地访问外部世界的一类服务。</p>
+<a id="more"></a>
+
+<h2 id="为什么需要-MCP"><a href="#为什么需要-MCP" class="headerlink" title="为什么需要 MCP"></a>为什么需要 MCP</h2><p>大语言模型本身很擅长理解和生成文本，但它天然有几个限制：</p>
+<ul>
+<li>不知道你本地文件系统里的最新内容</li>
+<li>不能直接访问你的数据库</li>
+<li>不能自动读取公司内部文档</li>
+<li>不能直接调用业务系统 API</li>
+<li>不能天然知道当前应用的真实状态</li>
+</ul>
+<p>如果想让 AI 真正完成任务，就需要让它连接外部工具。比如：</p>
+<ul>
+<li>查询订单状态</li>
+<li>创建日历事件</li>
+<li>读取 GitHub Issue</li>
+<li>搜索本地代码库</li>
+<li>操作数据库</li>
+<li>获取 Slack 或飞书消息</li>
+<li>调用内部系统接口</li>
+</ul>
+<p>过去，每个 AI 应用都可能为这些工具单独写一套接入逻辑。这样会带来很多重复工作，也不利于权限控制和生态复用。</p>
+<p>MCP 想解决的正是这个问题：用统一协议连接模型和工具。</p>
+<h2 id="MCP-服务是什么"><a href="#MCP-服务是什么" class="headerlink" title="MCP 服务是什么"></a>MCP 服务是什么</h2><p>可以把 MCP 服务理解为一个“工具适配层”。</p>
+<p>它站在 AI 应用和外部系统之间，把外部系统的能力包装成模型可以理解和调用的工具。AI 应用不需要知道数据库、文件系统、第三方 API 的所有细节，只需要按照 MCP 协议发现工具、读取上下文、发起调用即可。</p>
+<p>一个 MCP 服务通常会提供三类能力：</p>
+<ul>
+<li>Resources：资源，例如文件、文档、数据记录、代码片段</li>
+<li>Tools：工具，例如查询、创建、修改、搜索、执行某个动作</li>
+<li>Prompts：提示词模板，例如预设的工作流、任务模板、领域提示</li>
+</ul>
+<p>这些能力被 MCP 服务暴露出来后，支持 MCP 的 AI 客户端就可以发现并使用它们。</p>
+<h2 id="一个简单类比"><a href="#一个简单类比" class="headerlink" title="一个简单类比"></a>一个简单类比</h2><p>如果把大模型看作一个聪明但不能离开房间的人，那么 MCP 服务就像房间里的标准接口。</p>
+<p>模型可以通过这个接口说：</p>
+<ul>
+<li>帮我读取这个文件</li>
+<li>帮我查一下数据库</li>
+<li>帮我调用这个 API</li>
+<li>帮我搜索项目里的某个函数</li>
+<li>帮我把结果保存下来</li>
+</ul>
+<p>而 MCP 服务负责真正执行这些动作，并把结果返回给模型。</p>
+<p>这样一来，模型不用直接接触底层系统，开发者也可以更清楚地控制它能做什么、不能做什么。</p>
+<h2 id="MCP-的基本架构"><a href="#MCP-的基本架构" class="headerlink" title="MCP 的基本架构"></a>MCP 的基本架构</h2><p>一个典型的 MCP 架构包含三个角色：</p>
+<pre><code class="text">AI 客户端  &lt;-&gt;  MCP 协议  &lt;-&gt;  MCP 服务  &lt;-&gt;  外部系统
+</code></pre>
+<p>其中：</p>
+<ul>
+<li>AI 客户端：例如支持 MCP 的 IDE、桌面助手、Agent 平台或聊天应用</li>
+<li>MCP 协议：定义客户端和服务之间如何通信</li>
+<li>MCP 服务：负责暴露工具、资源和提示词</li>
+<li>外部系统：真实的数据源或业务系统，例如文件系统、数据库、GitHub、Notion、Slack 等</li>
+</ul>
+<p>MCP 服务可以运行在本地，也可以运行在远端。对于本地开发场景，MCP 服务常常用于访问本地代码、文件和开发工具。对于企业场景，MCP 服务可能连接内部系统，并配合身份认证和权限管理。</p>
+<h2 id="MCP-服务能做什么"><a href="#MCP-服务能做什么" class="headerlink" title="MCP 服务能做什么"></a>MCP 服务能做什么</h2><p>MCP 服务的能力取决于它连接了什么系统。</p>
+<h3 id="连接本地文件"><a href="#连接本地文件" class="headerlink" title="连接本地文件"></a>连接本地文件</h3><p>文件类 MCP 服务可以让 AI 读取、搜索或修改本地项目文件。对于编程助手来说，这非常重要，因为模型需要看到真实代码才能做出可靠判断。</p>
+<p>例如：</p>
+<ul>
+<li>搜索函数定义</li>
+<li>阅读 README</li>
+<li>修改配置文件</li>
+<li>分析项目结构</li>
+<li>生成文档</li>
+</ul>
+<h3 id="连接数据库"><a href="#连接数据库" class="headerlink" title="连接数据库"></a>连接数据库</h3><p>数据库类 MCP 服务可以让 AI 查询数据、分析表结构，甚至辅助生成 SQL。</p>
+<p>例如：</p>
+<ul>
+<li>查看某张表的字段</li>
+<li>查询最近订单</li>
+<li>分析数据异常</li>
+<li>生成统计报表</li>
+<li>辅助排查线上问题</li>
+</ul>
+<p>当然，数据库场景对权限和安全要求更高，通常需要限制只读权限或设置明确的审批流程。</p>
+<h3 id="连接第三方平台"><a href="#连接第三方平台" class="headerlink" title="连接第三方平台"></a>连接第三方平台</h3><p>MCP 服务也可以连接各种外部平台，例如 GitHub、Slack、Notion、Google Drive、Jira 等。</p>
+<p>这样 AI 就可以参与更完整的工作流：</p>
+<ul>
+<li>总结某个 GitHub PR</li>
+<li>创建 Jira 任务</li>
+<li>查询会议纪要</li>
+<li>根据 Slack 讨论生成行动项</li>
+<li>在知识库中搜索相关文档</li>
+</ul>
+<h3 id="连接业务系统"><a href="#连接业务系统" class="headerlink" title="连接业务系统"></a>连接业务系统</h3><p>企业内部也可以开发自己的 MCP 服务，把订单、客服、风控、库存、财务等系统能力暴露给 AI。</p>
+<p>这类 MCP 服务的价值很高，因为它能让 AI 从“问答工具”变成真正能参与业务流程的助手。</p>
+<h2 id="MCP-和-API-有什么区别"><a href="#MCP-和-API-有什么区别" class="headerlink" title="MCP 和 API 有什么区别"></a>MCP 和 API 有什么区别</h2><p>MCP 并不是用来取代 API 的。更准确地说，MCP 是面向 AI 应用的工具连接协议，而 API 是面向软件系统的通用接口。</p>
+<p>普通 API 通常假设调用方是程序员写好的代码，参数、流程和错误处理都由开发者控制。</p>
+<p>MCP 则更关注：</p>
+<ul>
+<li>如何让模型发现有哪些工具可用</li>
+<li>如何描述工具的输入和输出</li>
+<li>如何把资源上下文提供给模型</li>
+<li>如何控制模型调用工具的权限</li>
+<li>如何让不同 AI 客户端复用同一个工具服务</li>
+</ul>
+<p>换句话说，API 是系统之间的接口，MCP 是模型使用外部能力时的一套标准化接口。</p>
+<p>很多 MCP 服务底层仍然会调用普通 API。MCP 的作用，是把这些 API 包装成更适合 AI Agent 使用的形式。</p>
+<h2 id="MCP-和-Function-Calling-有什么关系"><a href="#MCP-和-Function-Calling-有什么关系" class="headerlink" title="MCP 和 Function Calling 有什么关系"></a>MCP 和 Function Calling 有什么关系</h2><p>Function Calling 是很多大模型平台提供的工具调用能力。开发者可以告诉模型有哪些函数可以调用，模型根据用户意图选择函数并生成参数。</p>
+<p>MCP 和 Function Calling 的目标相似，都是让模型使用工具。但它们的层次不同：</p>
+<ul>
+<li>Function Calling 更像模型厂商或推理平台内部的工具调用机制</li>
+<li>MCP 更像客户端和外部工具服务之间的开放协议</li>
+</ul>
+<p>可以理解为：Function Calling 解决“模型如何决定调用函数”，MCP 解决“工具如何被发现、描述、连接和复用”。</p>
+<p>在实际系统中，二者可以配合使用。AI 客户端通过 MCP 发现工具，再把工具能力交给模型进行选择和调用。</p>
+<h2 id="MCP-服务的优势"><a href="#MCP-服务的优势" class="headerlink" title="MCP 服务的优势"></a>MCP 服务的优势</h2><p>MCP 服务最大的价值在于标准化。</p>
+<h3 id="一次开发，多处使用"><a href="#一次开发，多处使用" class="headerlink" title="一次开发，多处使用"></a>一次开发，多处使用</h3><p>如果你为某个系统开发了 MCP 服务，多个支持 MCP 的客户端都可以使用它。比如同一个 GitHub MCP 服务，可以被 IDE、桌面助手和自动化 Agent 共同使用。</p>
+<h3 id="更清晰的权限边界"><a href="#更清晰的权限边界" class="headerlink" title="更清晰的权限边界"></a>更清晰的权限边界</h3><p>MCP 服务可以明确暴露哪些资源和工具。开发者可以把能力限制在安全范围内，例如只允许读取某个目录，只允许查询某些数据，只允许执行特定操作。</p>
+<h3 id="更适合-Agent-工作流"><a href="#更适合-Agent-工作流" class="headerlink" title="更适合 Agent 工作流"></a>更适合 Agent 工作流</h3><p>AI Agent 往往需要多步操作：先查资料，再分析，再调用工具，再根据结果继续执行。MCP 提供统一的工具和上下文接口，有利于构建这种连续工作流。</p>
+<h3 id="降低集成成本"><a href="#降低集成成本" class="headerlink" title="降低集成成本"></a>降低集成成本</h3><p>没有 MCP 时，每个 AI 客户端都要为每个外部系统写适配。使用 MCP 后，服务端只需要按协议暴露能力，客户端按协议接入即可。</p>
+<h2 id="MCP-服务的风险"><a href="#MCP-服务的风险" class="headerlink" title="MCP 服务的风险"></a>MCP 服务的风险</h2><p>MCP 让 AI 更有行动能力，也意味着需要更认真地处理安全问题。</p>
+<p>常见风险包括：</p>
+<ul>
+<li>模型误调用高风险工具</li>
+<li>敏感数据被暴露给不该访问的上下文</li>
+<li>工具权限过大</li>
+<li>写操作缺少人工确认</li>
+<li>日志中泄露密钥或隐私信息</li>
+<li>远端 MCP 服务身份认证不完善</li>
+</ul>
+<p>因此，设计 MCP 服务时要遵循最小权限原则。能只读就不要写入，能限制目录就不要开放整个文件系统，重要操作最好加入确认或审批。</p>
+<h2 id="一个-MCP-服务示例"><a href="#一个-MCP-服务示例" class="headerlink" title="一个 MCP 服务示例"></a>一个 MCP 服务示例</h2><p>假设我们要为一个内部订单系统做 MCP 服务，它可以暴露三个工具：</p>
+<pre><code class="text">get_order(order_id)
+list_recent_orders(user_id)
+create_refund_request(order_id, reason)
+</code></pre>
+<p>同时暴露一个资源：</p>
+<pre><code class="text">order_policy.md
+</code></pre>
+<p>当客服人员问 AI：</p>
+<pre><code class="text">帮我查一下订单 12345 为什么没有发货，如果符合规则就发起退款申请。
+</code></pre>
+<p>AI 客户端可以通过 MCP 服务完成以下流程：</p>
+<ol>
+<li>调用 <code>get_order</code> 查询订单状态</li>
+<li>读取 <code>order_policy.md</code> 判断是否符合退款规则</li>
+<li>向用户说明判断结果</li>
+<li>如果需要退款，调用 <code>create_refund_request</code></li>
+</ol>
+<p>这就是 MCP 的典型价值：把模型的理解能力和系统的执行能力连接起来。</p>
+<h2 id="什么场景适合使用-MCP"><a href="#什么场景适合使用-MCP" class="headerlink" title="什么场景适合使用 MCP"></a>什么场景适合使用 MCP</h2><p>如果你的 AI 应用只需要普通聊天，可能并不需要 MCP。</p>
+<p>但如果你希望 AI 访问真实数据或执行真实操作，MCP 就很有价值。</p>
+<p>适合使用 MCP 的场景包括：</p>
+<ul>
+<li>AI 编程助手访问本地代码库</li>
+<li>企业知识库问答</li>
+<li>内部系统自动化</li>
+<li>数据分析助手</li>
+<li>客服辅助工具</li>
+<li>DevOps 自动排障</li>
+<li>文档、任务、消息平台集成</li>
+<li>多工具 Agent 工作流</li>
+</ul>
+<p>尤其是当你希望同一套工具被多个 AI 客户端复用时，MCP 的优势会更明显。</p>
+<h2 id="如何开始学习-MCP"><a href="#如何开始学习-MCP" class="headerlink" title="如何开始学习 MCP"></a>如何开始学习 MCP</h2><p>学习 MCP 可以按下面的顺序来：</p>
+<ol>
+<li>先理解 Resources、Tools、Prompts 三个核心概念</li>
+<li>使用现成 MCP 服务，例如文件系统、GitHub 或数据库连接器</li>
+<li>在支持 MCP 的客户端中观察工具如何被发现和调用</li>
+<li>编写一个最简单的本地 MCP 服务</li>
+<li>再逐步加入权限、日志、错误处理和身份认证</li>
+</ol>
+<p>不要一开始就做复杂系统。一个能读取本地文件、提供搜索工具的小服务，就足够帮助你理解 MCP 的核心思想。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>MCP 服务是一种把 AI 模型连接到外部工具和数据源的标准化方式。它让模型不只是“会说”，还可以在受控范围内“会查、会用、会做”。</p>
+<p>它的核心价值不是让 AI 获得无限权限，而是用清晰的协议和边界，让 AI 更安全、更可靠地参与真实工作流。</p>
+<p>未来，随着 AI Agent 越来越多地进入开发、办公和企业系统，MCP 这类标准协议会变得越来越重要。理解 MCP，也就是在理解下一代 AI 应用如何连接真实世界。</p>
+
+      </div>
+      
+        <div class="copyright">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+    <strong>作者:  </strong>Melvin.Lee</a>
+    </li>
+    <li class="post-copyright-link">
+    <strong>文章链接:  </strong>
+    <a href="/2026/04/07/2675/" target="_blank" title="什么是 MCP 服务">https://lmfeng.com/2026/04/07/2675/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明:   </strong>
+      本网站所有文章除特别声明外,均采用 <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+      许可协议。转载请注明出处!
+    </li>
+  </ul>
+<div>
+      
+    </article>
+    <!-- 上一篇文章和下一篇文章 -->
+    
+      
+<div class="post-nav">
+
+
+
+  
+  <div class="post-nav-prev post-nav-item">
+    <div class="post-nav-img lazyload" data-original="/medias/2.jpg" style="background-size: cover; 
+      background-position: center center;">
+    </div>
+    <a href="/2026/05/08/2674/" class="post-nav-link">
+      <div class="title">
+        <i class="fa fa-angle-left"></i> 上一篇:
+        <div>使用 LM Studio 在 macOS 上本地部署 Gemma 4</div>
+      </div>
+      
+      <!-- <div class="content">
+        在本地运行大语言模型，已经从“折腾显卡和命令行”的小众玩法，逐渐变成普通开发者也能轻松上手的日常工具。对于 Mac 用户
+      </div> -->
+    </a>
+  </div>
+
+
+
+  
+  <div class="post-nav-next post-nav-item">
+    <div class="post-nav-img lazyload" data-original="/img/android12-hero.svg" style="background-size: cover; 
+      background-position: center center;">
+    </div>
+    <a href="/2021/02/19/2105/" class="post-nav-link">
+      <div class="title">
+        下一篇: <i class="fa fa-angle-right"></i>
+        <div>Android 12 行为变更</div>
+      </div>
+      <!-- <div class="content">
+        用户体验沉浸式手势导航改进Android 12简化了沉浸式模式，使手势导航更加轻松，并且与观看视频和读书等活动的其余部分
+      </div> -->
+    </a>
+  </div>
+
+</div>
+
+    
+    
+
+    <!-- 打赏 -->
+    
+
+    <!-- 分享 -->
+    
+    
+    <!-- 评论 -->
+      
+        <div id="myComment">
+          
+        </div>
+      
+  </div>
+
+  
+    <div class="toc-aside">
+      <div class="toc-main">
+        <div class="toc-aside-title">
+          <i class="fa fa-list-ul" aria-hidden="true"></i><span>本文目录</span>
+          <div class="toc-open-close">本文目录</div>
+        </div>
+        <div class="toc-content">
+          <link href="/js/tocbot/tocbot.css" rel="stylesheet">
+<script src="/js/tocbot/tocbot.min.js"></script>
+<div class="toc"></div>
+
+<script>
+  if ($('.toc').length > 0) {
+    var headerEl = 'h2, h3, h4',  //headers 
+      content = '.post-detail',//文章容器
+      idArr = {};  //标题数组以确定是否增加索引id
+      //add #id
+
+    $(content).children(headerEl).each(function () {
+      //去除空格以及多余标点
+      var headerId = $(this).text().replace(/[\s|\~|`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\_|\+|\=|\||\|\[|\]|\{|\}|\;|\:|\"|\'|\,|\<|\.|\>|\/|\?|\：|\，|\。]/g, '');
+
+      headerId = headerId.toLowerCase();
+      if (idArr[headerId]) {
+        //id已经存在
+        $(this).attr('id', headerId + '-' + idArr[headerId]);
+        idArr[headerId]++;
+      }
+      else {
+        //id未存在
+        idArr[headerId] = 1;
+        $(this).attr('id', headerId);
+      }
+    });
+
+    tocbot.init({
+      // Where to render the table of contents.
+      tocSelector: '.toc',
+      // Where to grab the headings to build the table of contents.
+      contentSelector: content,
+      // Which headings to grab inside of the contentSelector element.
+      headingSelector: headerEl,
+      scrollSmooth: true,
+      scrollSmoothOffset: -80,
+      headingsOffset: 130,
+      positionFixedSelector: '.toc-main',
+      positionFixedClass: 'is-position-fixed',
+      fixedSidebarOffset: 'auto',
+    });
+  }
+
+</script>
+
+<style>
+.is-position-fixed {
+  position:fixed !important;
+  top: 64px;
+}
+.toc-main ul {
+  counter-reset: show-list;
+}
+.toc-main ul li::before {
+  content: counter(item)".";
+  display: block;
+  position: absolute;
+  left: 12px;
+  top:0;
+}
+.toc > .toc-list {
+  padding-left: 35px;
+}
+.toc>.toc-list li {
+  list-style: decimal;
+}
+.toc-list {
+  padding-left: 25px;
+}
+</style>
+        </div>
+      </div>
+    </div>
+
+    
+
+    <script>
+      let openOrCloseBtn = $('.toc-aside .toc-aside-title .toc-open-close');
+      let open = eval('' || 'true');
+      openOrCloseBtn.click(function() {
+        if (open === true) {
+          $(".toc-aside").css({'width': 0, 'padding': 0});
+          $(".toc-content").css({'width': 0});
+          $(".toc-aside-title span, .toc-aside-title i").css({'display': 'none'});
+          $(".main-content").css({'width': '75%', 'margin': '10px auto'});
+          open = false;
+        } else {
+          $(".toc-aside").css({'width': '300px', 'padding': '0 10px'});
+          $(".toc-content").css({'width': '300px'});
+          $(".toc-aside-title span, .toc-aside-title i").css({'display': 'inline-block'});
+          $(".main-content").css({'width': '65%', 'margin-right': '10px', 'margin-left': 'calc(35% - 350px)'});
+          open = true;
+        }
+      });
+    </script>
+  
+</div>
+
+
+    </main>
+    <div class="footer bg-color">
+  <div class="footer-main">
+<!--    <div class="link">
+      <a target="_blank" rel="noopener" href="https://github.com/yuang01/hexo-theme-bamboo">
+        <i class="fa fa-github" aria-hidden="true"></i>
+      </a>
+      <a href="mailto:1730241541@qq.com">
+        <i class="fa fa-envelope-o" aria-hidden="true"></i>
+      </a>
+      <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1730241541">
+        <i class="fa fa-qq" aria-hidden="true"></i>
+      </a>
+      <a href="/atom.xml" target="_blank">
+        <i class="fa fa-rss" aria-hidden="true"></i>
+      </a>
+    </div>
+-->
+    <div class="footer-copyright">
+      Copyright © 2015 - 2026 <a href="/about">Melvin</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> 
+    </div>
+    
+  </div>
+</div>
+
+
+    
+      <div class="goTop top-btn-color border-color">
+  <i class="fa fa-arrow-up" aria-hidden="true"></i>
+</div>
+<script src="/js/goTop.js"></script>
+    
+
+    
+
+    <!-- 图片放大 -->
+    
+      <script src="/js/fancybox/jquery.fancybox.min.js"></script>
+    
+
+    <script src="/js/wrapImage.js"></script>
+    
+    <!-- 爱心点击 -->
+    
+      
+        <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 999; pointer-events: none;" ></canvas>
+        <script src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+        <script src="/js/cursor/explosion.min.js"></script>
+      
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script type="text/javascript" size="100" alpha='0.4' zIndex="-1" src="/js/ribbon.min.js"></script>
+    
+      <script src="/js/aos/aos.js"></script>
+      <script>
+        // https://github.com/michalsnik/aos
+        const themeOffset = parseInt('120') || 120;
+        const themeDelay = parseInt('0')|| 0;
+        const themeDuration = parseInt('400') || 400;
+        const themeEasing = 'ease' || 'ease';
+        const themeOnce = eval('true') || false;
+        const themeMirror = eval('false') || false;
+        const themeAnchorPlacement = 'top-bottom' || 'top-bottom';
+        AOS.init({
+          // Global settings:
+          disable: false, // accepts following values: 'phone', 'tablet', 'mobile', boolean, expression or function
+          startEvent: 'DOMContentLoaded', // name of the event dispatched on the document, that AOS should initialize on
+          initClassName: 'aos-init', // class applied after initialization
+          animatedClassName: 'aos-animate', // class applied on animation
+          useClassNames: false, // if true, will add content of `data-aos` as classes on scroll
+          disableMutationObserver: false, // disables automatic mutations' detections (advanced)
+          debounceDelay: 50, // the delay on debounce used while resizing window (advanced)
+          throttleDelay: 99, // the delay on throttle used while scrolling the page (advanced)
+
+          // Settings that can be overridden on per-element basis, by `data-aos-*` attributes:
+          offset: themeOffset, // offset (in px) from the original trigger point
+          delay: themeDelay, // values from 0 to 3000, with step 50ms
+          duration: themeDuration, // values from 0 to 3000, with step 50ms
+          easing: themeEasing, // default easing for AOS animations
+          once: themeOnce, // whether animation should happen only once - while scrolling down
+          mirror: themeMirror, // whether elements should animate out while scrolling past them
+          anchorPlacement: themeAnchorPlacement, // defines which position of the element regarding to window should trigger the animation
+
+        });
+      </script>
+    
+
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/v-plugs-ayu/lib/ayu.css">
+<script src="https://cdn.jsdelivr.net/npm/v-plugs-ayu/lib/ayu.umd.min.js"></script>
+<div id="appCopy">
+</div>
+<script>
+  var vm = new Vue({
+    el: '#appCopy',
+    data: {
+    },
+    computed: {
+    },
+    mounted() {
+      const that = this;
+      //  监听 ctrl + c事件  
+      $(document).unbind('keypress').bind('keypress', function (e) {
+        if (e.ctrlKey && e.keyCode == 67) {
+          doSomething();
+          // 返回false, 防止重复触发copy事件  
+          return false;
+        }
+      })
+
+      // 鼠标右键的复制事件  
+      $(document).unbind('copy').bind('copy', function (e) {
+        doSomething();
+        // console.log('右键复制 监听成功');
+      });
+
+      function doSomething() {
+        that.$notify({
+          title: "成功",
+          content: "代码已复制，请遵守相关授权协议。",
+          type: 'success'
+        })
+        // console.log('ctrl + c 监听成功');  
+      }
+    },
+    methods: {
+    },
+    created() { }
+  })
+</script>
+    
+
+    <!-- 输入框打字特效 -->
+    
+      <script src="/js/activate-power-mode.js"></script>
+      <script>
+          POWERMODE.colorful = true;  // 打开随机颜色特效
+          POWERMODE.shake = false;    // 关闭输入框抖动
+          document.body.addEventListener('input', POWERMODE);//监听打字事件
+      </script>
+    
+
+    <!-- markdown代码一键复制功能 -->
+    <script src="/js/clipboard/clipboard.min.js"></script>
+    <script>
+      !function (e, t, a) {
+        var copy = '复制';
+        /* code */
+        var initCopyCode = function(){
+          var copyHtml = '';
+          copyHtml += '<button class="btn-copy" data-clipboard-snippet="" style="position:absolute;top:0;right:0;z-index:1;">';
+          copyHtml += '<i class="fa fa-copy"></i><span>' + copy + '</span>';
+          copyHtml += '</button>';
+          $(".post-detail pre").not('.gutter pre').wrap("<div class='codeBox' style='position:relative;width:100%;'></div>")
+          $(".post-detail pre").not('.gutter pre').before(copyHtml);
+          new ClipboardJS('.btn-copy', {
+              target: function(trigger) {
+                  return trigger.nextElementSibling;
+              }
+          });
+        }
+        initCopyCode();
+      }(window, document);
+    </script>
+
+    <script src="/js/lazyload/lazyload@1.9.1.js"></script>
+    <script>
+      $(function() {
+        $("div.lazyload, img.lazyload, a.lazyload").lazyload(
+            {
+                effect: "fadeIn",
+                placeholder: "https://img10.360buyimg.com/ddimg/jfs/t1/159345/8/2271/222193/5ff7b36fEe49f5663/a95287c20385127f.gif"    //图片未加载出来时显示的占位图
+            }
+        );
+    });
+    </script>
+    
+    <script src="/js/app.js"></script>
+  </body>
+</html>

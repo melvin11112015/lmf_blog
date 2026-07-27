@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html>
+  
+
+
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+  <title>Android 17 正式发布：面向智能系统、自适应体验与新一代隐私安全 | 😄豐De个人博客</title>
+
+  
+    
+<link rel="stylesheet" href="/js/aos/aos.css">
+
+  
+
+  <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
+  <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  
+    <script>
+        var themeModelId = '';
+        if (themeModelId) {
+            localStorage.setItem('modelId', themeModelId);
+        }
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/gh/yuang01/live2d-widget@latest/autoload.js"></script>
+    <script>
+        var live2dOpen = eval('true') || false;
+        if (!live2dOpen) {
+            localStorage.setItem('waifu-display', 1609323474481);
+        }
+    </script>
+  
+  
+<link rel="stylesheet" href="/css/animate.min.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+    
+<link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css">
+
+  
+  
+  <style>
+        @media (max-width: 992px) {
+            #waifu {
+                display: none;
+            }
+        }
+    </style>
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+  <script src="/js/jquery3.5.1.js"></script>
+  <script src="/js/vue2.6.11.js"></script>
+  <link href="/js/danmu/barrager.css" rel="stylesheet">
+<script src="/js/danmu/jquery.barrager.js"></script>
+  <body>
+    <!-- 判断是否为黑夜模式 -->
+    <script>
+      let isDark = JSON.parse(localStorage.getItem('dark')) || JSON.parse('false');
+
+      if (isDark) {
+        $(document.body).addClass('darkModel');
+      }
+    </script>
+
+    <header class="header bg-color" 
+  style="position: fixed; 
+  left: 0; top: 0; z-index: 10;width: 100%;"
+>
+  <div class="header-content">
+    <div class="bars">
+      <div id="appDrawer" class="sidebar-image">
+  <i class="fa fa-bars" aria-hidden="true" @click="showDialogDrawer"></i>
+  <transition name="fade">
+    <div class="drawer-box_mask" v-cloak style="display: none;" v-show="visible" @click.self="cancelDialogDrawer">
+    </div>
+  </transition>
+  <div class="drawer-box" :class="{'active': visible}">
+    <div class="drawer-box-head bg-color">
+      <img class="drawer-box-head_logo" src="/medias/logo.png" alt="logo">
+      <h3 class="drawer-box-head_title">😄豐De个人博客</h3>
+      <h5 class="drawer-box-head_desc">Lmfeng Blog</h5>
+    </div>
+    <div class="drawer-box-content">
+      <ul class="drawer-box-content_menu">
+        
+          <li class="drawer-box-content_item">
+            <a href="/" class="menu-item-link">
+              
+                <i class="fa fa-home" aria-hidden="true"></i>
+              
+              <span>首页</span>
+            </a>
+          </li>
+        
+          <li class="drawer-box-content_item">
+            <a href="/archives" class="menu-item-link">
+              
+                <i class="fa fa-home" aria-hidden="true"></i>
+              
+              <span>归档</span>
+            </a>
+          </li>
+        
+          <li class="drawer-box-content_item">
+            <a href="/tags" class="menu-item-link">
+              
+                <i class="fa fa-tags" aria-hidden="true"></i>
+              
+              <span>标签</span>
+            </a>
+          </li>
+        
+          <li class="drawer-box-content_item">
+            <a href="/categories" class="menu-item-link">
+              
+                <i class="fa fa-bookmark" aria-hidden="true"></i>
+              
+              <span>分类</span>
+            </a>
+          </li>
+        
+          <li class="drawer-box-content_item">
+            <a href="/about" class="menu-item-link">
+              
+                <i class="fa fa-user" aria-hidden="true"></i>
+              
+              <span>关于</span>
+            </a>
+          </li>
+        
+          <li class="drawer-box-content_item">
+            <a target="_blank" rel="noopener" href="https://developer.android.google.cn/" class="menu-item-link">
+              
+                <i class="fa fa-link" aria-hidden="true"></i>
+              
+              <span>友情链接</span>
+            </a>
+          </li>
+        
+        <li class="drawer-box-content_item">
+          <a target="_blank" rel="noopener" href="https://github.com/melvin11112015/">
+            <i class="fa fa-github" aria-hidden="true"></i>
+            <span>Github</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+  var body = document.body || document.documentElement || window;
+  var vm = new Vue({
+    el: '#appDrawer',
+    data: {
+      visible: false,
+      top: 0,
+    },
+    computed: {
+    },
+    mounted() {
+    },
+    methods: {
+      showDialogDrawer() {
+        this.visible = true;
+        // 防止页面滚动，只能让弹框滚动
+        this.top = $(document).scrollTop()
+        body.style.cssText = 'width: 100%; height: 100%; position: fixed; top: -' + this.top  + 'px; left: 0; overflow: hidden;';
+      },
+      cancelDialogDrawer() {
+        this.visible = false;
+        body.removeAttribute('style');
+        $(document).scrollTop(this.top)
+      }
+    },
+    created() {}
+  })
+</script>
+    </div>
+    <div class="blog-title" id="author-avatar">
+      <div class="avatar">
+        <img src="/medias/logo.png" alt="logo">
+      </div>
+      <a href="/" class="logo">😄豐De个人博客</a>
+    </div>
+    <nav class="navbar">
+      <ul class="menu">
+        
+          <li class="menu-item">
+            <a href="/" class="menu-item-link">
+              
+                <i class="fa fa-home" aria-hidden="true"></i>
+              
+              <span>首页</span>
+            </a>
+          </li>
+        
+          <li class="menu-item">
+            <a href="/archives" class="menu-item-link">
+              
+                <i class="fa fa-archive" aria-hidden="true"></i>
+              
+              <span>归档</span>
+            </a>
+          </li>
+        
+          <li class="menu-item">
+            <a href="/tags" class="menu-item-link">
+              
+                <i class="fa fa-tags" aria-hidden="true"></i>
+              
+              <span>标签</span>
+            </a>
+          </li>
+        
+          <li class="menu-item">
+            <a href="/categories" class="menu-item-link">
+              
+                <i class="fa fa-bookmark" aria-hidden="true"></i>
+              
+              <span>分类</span>
+            </a>
+          </li>
+        
+          <li class="menu-item">
+            <a href="/about" class="menu-item-link">
+              
+                <i class="fa fa-user" aria-hidden="true"></i>
+              
+              <span>关于</span>
+            </a>
+          </li>
+        
+          <li class="menu-item">
+            <a target="_blank" rel="noopener" href="https://developer.android.google.cn/" class="menu-item-link">
+              
+                <i class="fa fa-link" aria-hidden="true"></i>
+              
+              <span>友情链接</span>
+            </a>
+          </li>
+        
+      </ul>
+      
+        <div class="dark">
+  <div class="dark-content">
+    <i class="fa fa-moon-o" aria-hidden="true"></i>
+    <!-- <span>关灯</span> -->
+  </div>
+  
+</div>
+
+<script>
+  $(function() {
+    let isDark = JSON.parse(localStorage.getItem('dark'))  || JSON.parse('false');
+    if (isDark) {
+      $(".dark-content").replaceWith(
+          `
+          <div class='dark-content'>
+            <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+          </div>
+          `
+        );
+    }
+    $('.dark').click(function() {
+      if ($(document.body).is('.darkModel')) {
+        $(document.body).removeClass('darkModel');
+        localStorage.setItem('dark', false);
+        $(".dark-content").replaceWith(
+          `
+          <div class='dark-content'>
+            <i class="fa fa-moon-o" aria-hidden="true"></i>
+          </div>
+          `
+        );
+      } else {
+        $(document.body).addClass('darkModel');
+        localStorage.setItem('dark', true);
+        $(".dark-content").replaceWith(
+          `
+          <div class='dark-content'>
+            <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+          </div>
+          `
+        );
+      }
+    })
+  })
+</script>
+        
+      
+        <div id="appSearch">
+  <div class="search"  @click="showDialog()"><i class="fa fa-search" aria-hidden="true"></i></div>
+  <transition name="fade">
+    <div class="message-box_wrapper" style="display: none;" v-cloak v-show="dialogVisible" @click.self="cancelDialogVisible()">
+      <div class="message-box animated bounceInDown">
+        <div class="close" style="overflow: hidden;">
+          <i class="fa fa-close" aria-hidden="true" style="float:right;" @click.self="cancelDialogVisible()"></i>
+        </div>
+        <h2>
+          <i class="fa fa-search" aria-hidden="true"></i>
+          <span class="title">本地搜索</span>
+          <!-- <i class="fa fa-close" style="float:right;" aria-hidden="true" @click.self="cancelDialogVisible()"></i> -->
+        </h2>
+        <form class="site-search-form">
+          <input type="text"
+            placeholder="请输入关键字"
+            id="local-search-input" 
+            @click="getSearchFile()"
+            class="st-search-input"
+            v-model="searchInput"
+          />
+        </form>
+        <div class="result-wrapper">
+          <div id="local-search-result" class="local-search-result-cls"></div>
+        </div>
+      </div>
+    </div>
+  </transition>
+</div>
+<script src="/js/local_search.js"></script>
+<script>
+  var body = document.body || document.documentElement || window;
+  var vm = new Vue({
+    el: '#appSearch',
+    data: {
+      dialogVisible: false,
+      searchInput: '',
+      top: 0,
+    },
+    computed: {
+    },
+    mounted() {
+    },
+    methods: {
+      showDialog() {
+        this.dialogVisible = true;
+        // 防止页面滚动，只能让弹框滚动
+        this.top = $(document).scrollTop()
+        body.style.cssText = 'overflow: hidden;';
+      },
+      getSearchFile() {
+        if (!this.searchInput) {
+          getSearchFile("/search.xml");
+        }
+      },
+      cancelDialogVisible() {
+        this.dialogVisible = false;
+        body.removeAttribute('style');
+        $(document).scrollTop(this.top)
+      },
+    },
+    created() {}
+  })
+</script>
+<!-- 解决刷新页面闪烁问题，可以在元素上添加display: none, 或者用vue.extend方法，详情：https://blog.csdn.net/qq_31393401/article/details/81017912 -->
+<!-- 下面是搜索基本写法 -->
+<!-- <script type="text/javascript" id="local.search.active">
+  var inputArea = document.querySelector("#local-search-input");
+  inputArea.onclick   = function(){ getSearchFile(); this.onclick = null }
+  inputArea.onkeydown = function(){ if(event.keyCode == 13) return false }
+</script> -->
+
+      
+
+    </nav>
+  </div>
+  
+  <a target="_blank" rel="noopener" href="https://github.com/melvin11112015/" class="github-corner color-primary" aria-label="View source on GitHub"><svg width="60" height="60" viewBox="0 0 250 250" style="fill:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+  
+    <div id="he-plugin-simple"></div>
+    <script>
+      WIDGET = {
+        CONFIG: {
+          "modules": "012",
+          "background": 5,
+          "tmpColor": "4A4A4A",
+          "tmpSize": 16,
+          "cityColor": "4A4A4A",
+          "citySize": 16,
+          "aqiSize": 16,
+          "weatherIconSize": 24,
+          "alertIconSize": 18,
+          "padding": "10px 10px 10px 10px",
+          "shadow": "1",
+          "language": "auto",
+          "borderRadius": 5,
+          "fixed": "false",
+          "vertical": "middle",
+          "horizontal": "center",
+          "key": "2784dd3fcb1e4f0f9a9b579bf69641f2"
+        }
+      }
+    </script>
+    <script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script> 
+    
+</header>
+    <main class="main" style="margin-top: 60px;">
+      
+ <!-- prismjs 代码高亮 -->
+ 
+
+<div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -1;"></div>
+<div id="appBgSwiper" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;" :style="{'background-color': bgColor ? bgColor : 'transparent'}">
+    <transition-group tag="ul" :name="names">
+        <li v-for='(image,index) in img' :key='index' v-show="index === mark" class="bg-swiper-box">
+            <img :src="image" class="bg-swiper-img">
+        </li>
+    </transition-group>
+</div>
+<script>
+    var vm = new Vue({
+        el: '#appBgSwiper',
+        data: {
+            names: '' || 'fade' || 'fade', // translate-fade fade
+            mark: 0,
+            img: [],
+            bgColor: '',
+            time: null
+        },
+        methods: {   //添加方法
+            change(i, m) {
+                if (i > m) {
+                    // this.names = 'fade';
+                } else if (i < m) {
+                    // this.names = 'fade';
+                } else {
+                    return;
+                }
+                this.mark = i;
+            },
+            prev() {
+                // this.names = 'fade';
+                this.mark--;
+                if (this.mark === -1) {
+                    this.mark = 3;
+                    return
+                }
+            },
+            next() {
+                // this.names = 'fade';
+                this.mark++;
+                if (this.mark === this.img.length) {
+                    this.mark = 0;
+                    return
+                }
+            },
+            autoPlay() {
+                // this.names = 'fade';
+                this.mark++;
+                if (this.mark === this.img.length) {
+                    this.mark = 0;
+                    return
+                }
+            },
+            play() {
+                let bgImgDelay = '' || '180000'
+                let delay = parseInt(bgImgDelay) || 180000;
+                this.time = setInterval(this.autoPlay, delay);
+            },
+            enter() {
+                clearInterval(this.time);
+            },
+            leave() {
+                this.play();
+            }
+        },
+        created() {
+            this.play()
+        },
+        beforeDestroy() {
+            clearInterval(this.time);
+        },
+        mounted() {
+            let prop = ''|| '';
+            let isImg = prop.includes('.bmp') || prop.includes('.jpg') || prop.includes('.png') || prop.includes('.tif') || prop.includes('.gif') || prop.includes('.pcx') || prop.includes('.tga') || prop.includes('.exif') || prop.includes('.fpx') || prop.includes('.psd') || prop.includes('.cdr') || prop.includes('.pcd') || prop.includes('.dxf') || prop.includes('.ufo') || prop.includes('.eps') || prop.includes('.ai') || prop.includes('.raw') || prop.includes('.WMF') || prop.includes('.webp') || prop.includes('.jpeg')
+            if (isImg) {
+                let img = prop.split(',');
+                let configRoot = '/'
+                let arrImg = [];
+                img.forEach(el => {
+                    var Expression=/http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+			        var objExp = new RegExp(Expression);
+
+                    if(objExp.test(el)) {
+                        // http or https
+                        arrImg.push(el);
+                    } else {
+                        // 非http or https开头
+                        // 本地文件
+                        let firstStr = el.charAt(0);
+                        if (firstStr == '/') {
+                            el = el.substr(1); // 删除第一个字符 '/',因为 configRoot最后一个字符为 /
+                        }
+                        el = configRoot + el;
+                        arrImg.push(el);
+                    }
+                })
+                this.img = arrImg;
+            } else {
+                this.bgColor = prop;
+            }
+        }
+    })
+</script>
+
+<style>
+    .bg-swiper-box {
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+    .bg-swiper-img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+    }
+</style>
+
+
+
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/img/AfD-Android-17.gif" style="background-repeat: no-repeat; background-size: cover; 
+  background-position: center center;position: relative;">
+  <div class="post-detail-header-mask"></div>
+  <canvas id="header_canvas"style="position:absolute;bottom:0"></canvas>
+  
+    <div class="title-box">
+      
+        <span class="title" id="post-detail-header-title"></span>
+        <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+          <script>
+            var typed = new Typed("#post-detail-header-title", {
+              strings: ['Android 17 正式发布：面向智能系统、自适应体验与新一代隐私安全'],
+              startDelay: 100,
+              typeSpeed: 100,
+              loop: false,
+              backSpeed: 50,
+              showCursor: false
+            });
+          </script>
+        
+    </div>
+  
+  
+  
+    <script src="/js/bubble/bubble.js"></script>
+  
+</div>
+
+
+<div class="row justify-position">
+  <div class="main-content">
+    <article class="post post-detail">
+      
+      
+      <div class="post-meta">
+        <i class="fa fa-clock-o" aria-hidden="true"></i>
+        <span class="post-time">2026-06-22</span>
+      </div>
+      
+      <div class="post-tags-categories">
+        
+        <div class="tags">
+          <i class="iconfont icontag"></i>
+          
+            <a href="/tags/Android-17/" class="">
+              Android 17
+            </a>
+          
+        </div>
+        
+        
+        <div class="categories">
+          <i class="iconfont iconbookmark1"></i>
+          
+            <a href="/categories/Android/" class="">
+              Android
+            </a>
+          
+        </div>
+        
+      </div>
+      <div class="post-content">
+        <blockquote>
+<p>原文： <a target="_blank" rel="noopener" href="https://android-developers.googleblog.com/2026/06/Android-17.html">Android 17 is here</a><br>来源：Android Developers Blog，发布于 2026 年 6 月 16 日。<br>说明：本文为中文改写版，保留原文主要信息和结构，便于中文读者快速理解 Android 17 的关键变化。</p>
+</blockquote>
+<p>Google 已正式发布 Android 17，并开始面向大多数受支持的 Pixel 设备推送。未来几个月，也会有更多搭载 Android 17 的新设备上市。</p>
+<p>Android 17 的重点不只是一次系统版本更新。Google 将它描述为 Android 从“操作系统”向“智能系统”演进的开始：通过硬件、软件和 AI 的深度结合，让应用可以更自然地参与用户任务，并在大屏、多设备、隐私安全、媒体能力和性能方面带来一系列新变化。</p>
+<a id="more"></a>
+
+<h2 id="从操作系统走向智能系统"><a href="#从操作系统走向智能系统" class="headerlink" title="从操作系统走向智能系统"></a>从操作系统走向智能系统</h2><p>Android 17 强化了 AppFunctions。开发者可以把应用中的核心能力暴露为可编排的“工具”，让设备端的 Android MCP 发现和调用这些能力。AI 助手或智能代理可以在用户授权和系统约束下，基于应用本地状态完成任务流。</p>
+<p>配套的 Jetpack 库目前处于 alpha 阶段。开发者可以通过注解类和编写 KDoc 的方式定义 AppFunction，从而让应用能力更容易被 AI 工具理解和调用。</p>
+<p>Google 还发布了 AppFunctions agent skill，用于分析应用关键流程、生成 Kotlin 代码、优化适合 LLM 工具调用的 KDoc，并提供用于测试和调试的 ADB 命令。Gemini 集成目前处于面向受信任测试者的私有预览阶段，但开发者已经可以提前准备应用。</p>
+<h2 id="自适应优先成为新标准"><a href="#自适应优先成为新标准" class="headerlink" title="自适应优先成为新标准"></a>自适应优先成为新标准</h2><p>Android 17 的另一个核心方向是 adaptive-first，也就是“自适应优先”。用户已经不只在手机上使用应用，他们会在折叠屏、平板、笔记本、车载屏幕和 XR 环境之间切换。Google 表示，目前大屏 Android 设备数量已经超过 5.8 亿台，因此自适应不再只是技术优化，而是触达高活跃用户的重要机会。</p>
+<h3 id="大屏不再允许随意限制方向和尺寸"><a href="#大屏不再允许随意限制方向和尺寸" class="headerlink" title="大屏不再允许随意限制方向和尺寸"></a>大屏不再允许随意限制方向和尺寸</h3><p>对于面向 Android 17，也就是 API level 37 的应用，在大屏设备上，系统将不再允许开发者通过旧方式规避横竖屏、尺寸调整和宽高比适配。</p>
+<p>系统会忽略一批旧的 manifest 属性和运行时 API，包括：</p>
+<ul>
+<li><code>screenOrientation</code></li>
+<li><code>setRequestedOrientation()</code></li>
+<li><code>resizeableActivity=false</code></li>
+<li><code>minAspectRatio</code> 和 <code>maxAspectRatio</code> 等宽高比限制</li>
+</ul>
+<p>这个变化适用于 <code>sw &gt; 600 dp</code> 的大屏设备。游戏根据 Google Play 中的应用类别仍然豁免。对普通应用来说，开发者需要确保界面能适配任意窗口大小，尊重用户选择的设备姿态，并原生支持自由窗口模式。</p>
+<h3 id="新一代多任务能力"><a href="#新一代多任务能力" class="headerlink" title="新一代多任务能力"></a>新一代多任务能力</h3><p>Android 17 引入了更多窗口化和多任务能力，对应用布局弹性提出了更高要求：</p>
+<ul>
+<li>App Bubbles：用户可以长按启动器图标，把任意应用变成浮动气泡，不再局限于消息气泡场景。</li>
+<li>Bubble Bar：在平板和折叠屏等大屏设备上，系统任务栏会提供专门的气泡栏，用于组织、切换和停靠这些浮动应用气泡。</li>
+<li>桌面交互式画中画：在桌面环境中，Android 17 支持可交互的 PiP 窗口。它不再只是只读的小窗，而是可以保持置顶并继续响应用户操作。</li>
+</ul>
+<h3 id="Activity-重建行为调整"><a href="#Activity-重建行为调整" class="headerlink" title="Activity 重建行为调整"></a>Activity 重建行为调整</h3><p>为了减少状态丢失和卡顿，Android 17 改变了部分配置变化下 Activity 的默认重建行为。对于一些不需要完整重绘 UI 的典型配置变化，系统默认不再重启 Activity，而是通过 <code>onConfigurationChanged()</code> 通知运行中的 Activity。</p>
+<p>如果应用明确依赖重建流程来重新加载资源，需要通过新的 <code>android:recreateOnConfigChanges</code> manifest 属性显式选择重建行为。</p>
+<h3 id="Continue-On：跨设备继续任务"><a href="#Continue-On：跨设备继续任务" class="headerlink" title="Continue On：跨设备继续任务"></a>Continue On：跨设备继续任务</h3><p>Android 17 新增 Continue On 能力，帮助用户在 Android 设备之间无缝继续任务。例如，用户在手机上最近打开的应用，可以出现在平板任务栏中，并通过一次点击跳转到之前停下的位置。</p>
+<p>这个能力还可以支持从应用到网页的连续体验。如果目标设备未安装应用，系统可以回退到网页继续相关任务。</p>
+<h2 id="Jetpack-Compose-的自适应开发方向"><a href="#Jetpack-Compose-的自适应开发方向" class="headerlink" title="Jetpack Compose 的自适应开发方向"></a>Jetpack Compose 的自适应开发方向</h2><p>为了帮助开发者满足 Android 17 的自适应要求，Google 推出了 Jetpack Compose adaptive skill。它可以辅助开发者落地自适应最佳实践，包括：</p>
+<ul>
+<li>在手机底部导航和大屏侧边导航栏之间自动切换</li>
+<li>使用 Navigation 3 Scenes 构建列表详情页和辅助窗格布局</li>
+<li>使用 Compose 1.11 的 FlexBox 与 Grid API 动态调整行列跨度</li>
+<li>通过增强的触控板和鼠标支持，打造更接近笔记本体验的交互</li>
+<li>在全屏、App Bubble 和交互式桌面 PiP 等窗口状态之间保持 UI 自适应</li>
+</ul>
+<p>Google 也明确表示，Android 开发现在进入 Compose-first 阶段。新的 Android API、库、工具和开发者指南会优先围绕 Jetpack Compose 构建。</p>
+<p>传统 View 组件以及基于 View 的 Jetpack 库，例如 Fragment、RecyclerView 和 ViewPager，将进入维护模式，只接收关键 bug 修复，不再新增功能。</p>
+<h2 id="性能与效率改进"><a href="#性能与效率改进" class="headerlink" title="性能与效率改进"></a>性能与效率改进</h2><p>Android 17 在应用启动、流畅度、内存和多任务效率方面带来多项变化。</p>
+<h3 id="应用内存限制"><a href="#应用内存限制" class="headerlink" title="应用内存限制"></a>应用内存限制</h3><p>从 Android 17 开始，系统会根据设备总内存对应用施加更严格的内存限制。如果前台应用或服务的内存使用失控，系统可能会直接终止相关进程。</p>
+<p>开发者可以借助以下工具应对新限制：</p>
+<ul>
+<li>R8 Optimizer：通过缩减字节码、移除未使用代码和资源来降低内存占用。</li>
+<li>R8 configuration analyzer：帮助确认 R8 配置是否充分发挥作用。</li>
+<li>Android Studio Panda 中的 LeakCanary 集成：让内存泄漏分析更贴近 IDE 和源码。</li>
+<li>ApplicationExitInfo：如果应用因内存限制被终止，<code>getDescription()</code> 会返回相关描述。</li>
+<li>ProfilingManager：支持基于异常触发的分析，在达到内存限制时自动采集 heap dump。</li>
+</ul>
+<p>Google 也计划在 Google Play Console 中提供更多真实环境下的内存指标。</p>
+<h3 id="分代垃圾回收"><a href="#分代垃圾回收" class="headerlink" title="分代垃圾回收"></a>分代垃圾回收</h3><p>Android 17 为 ART 的 Concurrent Mark-Compact GC 引入更频繁、成本更低的年轻代回收。系统会区分短生命周期对象和长期存活对象，用轻量的年轻代扫描减少全堆扫描，从而降低 CPU 使用、耗电和 UI 卡顿。</p>
+<p>这些 ART 改进也会通过 Google Play 系统更新覆盖到大量运行 Android 12 及以上版本的设备。</p>
+<h3 id="无锁-MessageQueue"><a href="#无锁-MessageQueue" class="headerlink" title="无锁 MessageQueue"></a>无锁 MessageQueue</h3><p>对于目标 SDK 37 及以上的应用，<code>android.os.MessageQueue</code> 采用无锁架构。这有助于减少掉帧、改善启动时间，并提升多线程繁忙队列场景下的性能。</p>
+<p>需要注意的是，如果应用通过反射访问 <code>MessageQueue</code> 的私有字段或方法，可能会受到影响。测试场景下应改用新增的 <code>TestLooperManager</code> API。</p>
+<h3 id="static-final-字段真正不可变"><a href="#static-final-字段真正不可变" class="headerlink" title="static final 字段真正不可变"></a>static final 字段真正不可变</h3><p>从 Android 17 开始，目标 SDK 37 及以上的应用不能再修改 <code>static final</code> 字段。通过反射修改会抛出 <code>IllegalAccessException</code>，通过 JNI 修改会导致应用崩溃。这一变化让运行时可以更积极地做性能优化。</p>
+<h3 id="自定义通知视图限制"><a href="#自定义通知视图限制" class="headerlink" title="自定义通知视图限制"></a>自定义通知视图限制</h3><p>Android 17 进一步收紧自定义通知视图的大小限制，关闭了通过 URI 绕过既有限制的方式。该行为受目标 SDK 控制，适用于目标 API 37 及以上的应用。</p>
+<h2 id="隐私与安全"><a href="#隐私与安全" class="headerlink" title="隐私与安全"></a>隐私与安全</h2><p>Android 17 延续了近年来 Android 的隐私方向：减少长期、宽泛权限，转向按会话、按选择授权。</p>
+<h3 id="更隐私友好的选择机制"><a href="#更隐私友好的选择机制" class="headerlink" title="更隐私友好的选择机制"></a>更隐私友好的选择机制</h3><p>Android 17 提供了多项系统级能力，让应用只访问用户明确选择的数据：</p>
+<ul>
+<li>系统级联系人选择器：应用可通过 <code>ACTION_PICK_CONTACTS</code> 临时访问用户选择的具体字段，例如邮箱或电话号码，而不必申请完整的 <code>READ_CONTACTS</code> 权限。</li>
+<li>可自定义宽高比的照片选择器：通过 <code>PhotoPickerUiCustomizationParams</code>，应用可以让系统照片选择器以竖屏缩略图方式展示内容。</li>
+<li>系统渲染的位置按钮：应用可嵌入系统渲染的位置按钮，只为当前会话获取精确位置。</li>
+<li>EyeDropper API：应用可通过系统级取色器从屏幕任意像素取色，避免申请敏感的屏幕捕获或媒体投影权限。</li>
+</ul>
+<h3 id="本地网络访问"><a href="#本地网络访问" class="headerlink" title="本地网络访问"></a>本地网络访问</h3><p>面向 Android 17 的应用，如果需要访问本地网络，需要申请 <code>ACCESS_LOCAL_NETWORK</code> 运行时权限，或者使用由系统中介的隐私保护型设备选择器。例如智能家居设备通信、投屏接收器发现等场景，都需要关注这一变化。</p>
+<p>由于 <code>ACCESS_LOCAL_NETWORK</code> 属于 <code>NEARBY_DEVICES</code> 权限组，已经授予相关附近设备权限的用户通常不会再次看到授权提示。</p>
+<h3 id="短信验证码保护"><a href="#短信验证码保护" class="headerlink" title="短信验证码保护"></a>短信验证码保护</h3><p>Android 17 扩展了短信一次性验证码保护。部分应用对短信内容的访问会延迟三小时：</p>
+<ul>
+<li>WebOTP 格式短信：如果应用不是预期接收方，将被延迟访问。</li>
+<li>标准短信验证码：面向 SDK 37 及以上的应用会受到延迟限制。</li>
+<li>默认短信应用、助手应用和已连接的配套设备应用可豁免。</li>
+</ul>
+<p>Google 建议开发者迁移到 SMS Retriever 或 SMS User Consent API。</p>
+<h3 id="后量子密码能力"><a href="#后量子密码能力" class="headerlink" title="后量子密码能力"></a>后量子密码能力</h3><p>Android 17 为下一代加密安全做准备。支持的设备可以在安全硬件中生成 ML-DSA 密钥，用于量子安全签名，并通过标准 JCA API 暴露给应用。</p>
+<p>同时，Android 17 引入 v3.2 APK 签名方案，把传统签名和 ML-DSA 签名结合起来，用于增强应用分发安全。</p>
+<h3 id="更安全的原生动态代码加载"><a href="#更安全的原生动态代码加载" class="headerlink" title="更安全的原生动态代码加载"></a>更安全的原生动态代码加载</h3><p>对于目标 SDK 37 及以上的应用，Android 14 引入的 Safer Dynamic Code Loading 保护扩展到原生库。通过 <code>System.load()</code> 加载的原生文件必须标记为只读，否则系统会抛出 <code>UnsatisfiedLinkError</code>。</p>
+<h3 id="物理键盘输入密码更安全"><a href="#物理键盘输入密码更安全" class="headerlink" title="物理键盘输入密码更安全"></a>物理键盘输入密码更安全</h3><p>Android 17 在使用物理键盘输入密码、PIN 和其他敏感内容时，默认不再显示最后输入的字符。用户仍可根据偏好调整显示设置，具体可用性可能因设备厂商而异。</p>
+<h2 id="媒体与相机能力"><a href="#媒体与相机能力" class="headerlink" title="媒体与相机能力"></a>媒体与相机能力</h2><p>Android 17 为创作者和媒体应用带来了多项新能力：</p>
+<ul>
+<li>Eclipsa Video：基于 SMPTE ST 2094-50 的 HDR 视频标准，引入新的元数据，让设备根据显示能力和环境光优化内容呈现。</li>
+<li>RAW14 图像格式：为专业相机应用提供更高细节和色彩深度的采集能力。</li>
+<li>厂商定义的相机扩展：硬件合作伙伴可以定义和实现自定义相机扩展模式。</li>
+<li>Extended HE-AAC 软件编码器：在低带宽语音消息等场景中提供更好的音频质量，并支持响度元数据。</li>
+<li>Versatile Video Coding，也就是 H.266：允许 OEM 增加 VVC 编解码支持。</li>
+<li>相机设备类型 API：应用可以识别摄像头是内置硬件、外接 USB 摄像头还是虚拟摄像头。</li>
+<li>视频录制恒定质量模式：通过 <code>MediaRecorder</code> 配置视频编码器的恒定质量模式，让视频视觉质量更稳定。</li>
+</ul>
+<h2 id="更好的助听器支持"><a href="#更好的助听器支持" class="headerlink" title="更好的助听器支持"></a>更好的助听器支持</h2><p>Android 17 增强了对助听器的支持：</p>
+<ul>
+<li>新增 BLE Audio 助听器设备类别，应用可以区分助听器和普通耳机。</li>
+<li>用户可以更细粒度地控制系统声音路由，例如通知、铃声和闹钟可以选择播放到助听器或设备扬声器。</li>
+</ul>
+<p>这些能力有助于减少不必要的入耳打扰，同时保持助听器管理应用的蓝牙连接。</p>
+<h2 id="CameraX-与-Media3-更新"><a href="#CameraX-与-Media3-更新" class="headerlink" title="CameraX 与 Media3 更新"></a>CameraX 与 Media3 更新</h2><p>CameraX 和 Media3 已针对 Android 17 更新，用于简化相机拍摄、媒体播放、创意编辑和复杂媒体体验的开发。</p>
+<p>Google 还发布了一个 agent skill，可以帮助把旧的 Android 相机实现迁移到 CameraX。需要注意的是，开发者应将 CameraX 更新到 1.5.2 或 1.6.0 及以上版本，以避免 Android 17 设备上与新增动态范围模式相关的崩溃。</p>
+<h2 id="开发者需要尽快准备什么"><a href="#开发者需要尽快准备什么" class="headerlink" title="开发者需要尽快准备什么"></a>开发者需要尽快准备什么</h2><p>如果你开发 Android SDK、库、工具或游戏引擎，需要尽快测试和更新，避免下游应用和游戏开发者在适配 Android 17 时被阻塞。</p>
+<p>重点检查以下变化：</p>
+<ul>
+<li>大屏可调整尺寸：目标 Android 17 后，不能再在大屏上规避方向、尺寸和宽高比适配。</li>
+<li>动态代码加载：目标 SDK 37 及以上时，原生库动态加载也必须满足只读要求。</li>
+<li>证书透明度：Android 17 默认启用 Certificate Transparency。</li>
+<li>本地网络保护：目标 SDK 37 及以上时，本地网络访问默认受限。</li>
+<li>后台音频加固：Android 17 对后台音频播放、音频焦点和音量相关 API 做了更多限制。</li>
+<li>NPU 访问声明：需要直接访问 NPU 的应用，必须在 manifest 中声明 <code>FEATURE_NEURAL_PROCESSING_UNIT</code>。</li>
+</ul>
+<h2 id="如何开始使用-Android-17"><a href="#如何开始使用-Android-17" class="headerlink" title="如何开始使用 Android 17"></a>如何开始使用 Android 17</h2><p>受支持的 Pixel 设备会陆续收到 Android 17 正式版推送。如果没有 Pixel 设备，可以使用 Android Studio 中的 64 位 Android Emulator 系统镜像进行测试。</p>
+<p>Google 建议开发者使用最新 Canary 版本的 Android Studio Quail，并完成以下工作：</p>
+<ul>
+<li>在 Android 17 设备或模拟器上安装并测试现有应用。</li>
+<li>检查应用是否受到 Android 17 行为变更影响。</li>
+<li>针对核心流程做完整兼容性测试。</li>
+<li>对库、SDK、工具和游戏引擎提前发布适配说明或更新版本。</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Android 17 的关键词可以概括为：智能系统、自适应优先、Compose-first、性能效率、隐私安全和创作者能力。</p>
+<p>对开发者来说，最需要立即关注的是目标 SDK 37 后的大屏适配要求、本地网络权限变化、动态代码加载限制、内存限制、后台音频行为变化，以及 Compose-first 带来的长期技术方向变化。</p>
+<p>如果你的应用仍然依赖固定方向、固定窗口尺寸、旧 View 体系或对系统私有实现的反射访问，那么 Android 17 是一个明确的信号：现在是时候开始适配更弹性、更隐私友好、更面向多设备场景的 Android 应用了。</p>
+
+      </div>
+      
+        <div class="copyright">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+    <strong>作者:  </strong>Melvin.Lee</a>
+    </li>
+    <li class="post-copyright-link">
+    <strong>文章链接:  </strong>
+    <a href="/2026/06/22/2673/" target="_blank" title="Android 17 正式发布：面向智能系统、自适应体验与新一代隐私安全">https://lmfeng.com/2026/06/22/2673/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明:   </strong>
+      本网站所有文章除特别声明外,均采用 <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+      许可协议。转载请注明出处!
+    </li>
+  </ul>
+<div>
+      
+    </article>
+    <!-- 上一篇文章和下一篇文章 -->
+    
+      
+<div class="post-nav">
+
+
+
+  
+  <div class="post-nav-prev post-nav-item">
+    <div class="post-nav-img lazyload" data-original="/medias/5.jpg" style="background-size: cover; 
+      background-position: center center;">
+    </div>
+    <a href="/2026/07/26/2672/" class="post-nav-link">
+      <div class="title">
+        <i class="fa fa-angle-left"></i> 上一篇:
+        <div>使用 Codex 进行 Code Review</div>
+      </div>
+      
+      <!-- <div class="content">
+        
+Code Review 一直是软件开发流程里非常重要的一环。它不仅能帮助团队发现缺陷、统一代码风格，也能让知识在团队成
+      </div> -->
+    </a>
+  </div>
+
+
+
+  
+  <div class="post-nav-next post-nav-item">
+    <div class="post-nav-img lazyload" data-original="/medias/2.jpg" style="background-size: cover; 
+      background-position: center center;">
+    </div>
+    <a href="/2026/05/08/2674/" class="post-nav-link">
+      <div class="title">
+        下一篇: <i class="fa fa-angle-right"></i>
+        <div>使用 LM Studio 在 macOS 上本地部署 Gemma 4</div>
+      </div>
+      <!-- <div class="content">
+        在本地运行大语言模型，已经从“折腾显卡和命令行”的小众玩法，逐渐变成普通开发者也能轻松上手的日常工具。对于 Mac 用户
+      </div> -->
+    </a>
+  </div>
+
+</div>
+
+    
+    
+
+    <!-- 打赏 -->
+    
+
+    <!-- 分享 -->
+    
+    
+    <!-- 评论 -->
+      
+        <div id="myComment">
+          
+        </div>
+      
+  </div>
+
+  
+    <div class="toc-aside">
+      <div class="toc-main">
+        <div class="toc-aside-title">
+          <i class="fa fa-list-ul" aria-hidden="true"></i><span>本文目录</span>
+          <div class="toc-open-close">本文目录</div>
+        </div>
+        <div class="toc-content">
+          <link href="/js/tocbot/tocbot.css" rel="stylesheet">
+<script src="/js/tocbot/tocbot.min.js"></script>
+<div class="toc"></div>
+
+<script>
+  if ($('.toc').length > 0) {
+    var headerEl = 'h2, h3, h4',  //headers 
+      content = '.post-detail',//文章容器
+      idArr = {};  //标题数组以确定是否增加索引id
+      //add #id
+
+    $(content).children(headerEl).each(function () {
+      //去除空格以及多余标点
+      var headerId = $(this).text().replace(/[\s|\~|`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\_|\+|\=|\||\|\[|\]|\{|\}|\;|\:|\"|\'|\,|\<|\.|\>|\/|\?|\：|\，|\。]/g, '');
+
+      headerId = headerId.toLowerCase();
+      if (idArr[headerId]) {
+        //id已经存在
+        $(this).attr('id', headerId + '-' + idArr[headerId]);
+        idArr[headerId]++;
+      }
+      else {
+        //id未存在
+        idArr[headerId] = 1;
+        $(this).attr('id', headerId);
+      }
+    });
+
+    tocbot.init({
+      // Where to render the table of contents.
+      tocSelector: '.toc',
+      // Where to grab the headings to build the table of contents.
+      contentSelector: content,
+      // Which headings to grab inside of the contentSelector element.
+      headingSelector: headerEl,
+      scrollSmooth: true,
+      scrollSmoothOffset: -80,
+      headingsOffset: 130,
+      positionFixedSelector: '.toc-main',
+      positionFixedClass: 'is-position-fixed',
+      fixedSidebarOffset: 'auto',
+    });
+  }
+
+</script>
+
+<style>
+.is-position-fixed {
+  position:fixed !important;
+  top: 64px;
+}
+.toc-main ul {
+  counter-reset: show-list;
+}
+.toc-main ul li::before {
+  content: counter(item)".";
+  display: block;
+  position: absolute;
+  left: 12px;
+  top:0;
+}
+.toc > .toc-list {
+  padding-left: 35px;
+}
+.toc>.toc-list li {
+  list-style: decimal;
+}
+.toc-list {
+  padding-left: 25px;
+}
+</style>
+        </div>
+      </div>
+    </div>
+
+    
+
+    <script>
+      let openOrCloseBtn = $('.toc-aside .toc-aside-title .toc-open-close');
+      let open = eval('' || 'true');
+      openOrCloseBtn.click(function() {
+        if (open === true) {
+          $(".toc-aside").css({'width': 0, 'padding': 0});
+          $(".toc-content").css({'width': 0});
+          $(".toc-aside-title span, .toc-aside-title i").css({'display': 'none'});
+          $(".main-content").css({'width': '75%', 'margin': '10px auto'});
+          open = false;
+        } else {
+          $(".toc-aside").css({'width': '300px', 'padding': '0 10px'});
+          $(".toc-content").css({'width': '300px'});
+          $(".toc-aside-title span, .toc-aside-title i").css({'display': 'inline-block'});
+          $(".main-content").css({'width': '65%', 'margin-right': '10px', 'margin-left': 'calc(35% - 350px)'});
+          open = true;
+        }
+      });
+    </script>
+  
+</div>
+
+
+    </main>
+    <div class="footer bg-color">
+  <div class="footer-main">
+<!--    <div class="link">
+      <a target="_blank" rel="noopener" href="https://github.com/yuang01/hexo-theme-bamboo">
+        <i class="fa fa-github" aria-hidden="true"></i>
+      </a>
+      <a href="mailto:1730241541@qq.com">
+        <i class="fa fa-envelope-o" aria-hidden="true"></i>
+      </a>
+      <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1730241541">
+        <i class="fa fa-qq" aria-hidden="true"></i>
+      </a>
+      <a href="/atom.xml" target="_blank">
+        <i class="fa fa-rss" aria-hidden="true"></i>
+      </a>
+    </div>
+-->
+    <div class="footer-copyright">
+      Copyright © 2015 - 2026 <a href="/about">Melvin</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> 
+    </div>
+    
+  </div>
+</div>
+
+
+    
+      <div class="goTop top-btn-color border-color">
+  <i class="fa fa-arrow-up" aria-hidden="true"></i>
+</div>
+<script src="/js/goTop.js"></script>
+    
+
+    
+
+    <!-- 图片放大 -->
+    
+      <script src="/js/fancybox/jquery.fancybox.min.js"></script>
+    
+
+    <script src="/js/wrapImage.js"></script>
+    
+    <!-- 爱心点击 -->
+    
+      
+        <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 999; pointer-events: none;" ></canvas>
+        <script src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+        <script src="/js/cursor/explosion.min.js"></script>
+      
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script type="text/javascript" size="100" alpha='0.4' zIndex="-1" src="/js/ribbon.min.js"></script>
+    
+      <script src="/js/aos/aos.js"></script>
+      <script>
+        // https://github.com/michalsnik/aos
+        const themeOffset = parseInt('120') || 120;
+        const themeDelay = parseInt('0')|| 0;
+        const themeDuration = parseInt('400') || 400;
+        const themeEasing = 'ease' || 'ease';
+        const themeOnce = eval('true') || false;
+        const themeMirror = eval('false') || false;
+        const themeAnchorPlacement = 'top-bottom' || 'top-bottom';
+        AOS.init({
+          // Global settings:
+          disable: false, // accepts following values: 'phone', 'tablet', 'mobile', boolean, expression or function
+          startEvent: 'DOMContentLoaded', // name of the event dispatched on the document, that AOS should initialize on
+          initClassName: 'aos-init', // class applied after initialization
+          animatedClassName: 'aos-animate', // class applied on animation
+          useClassNames: false, // if true, will add content of `data-aos` as classes on scroll
+          disableMutationObserver: false, // disables automatic mutations' detections (advanced)
+          debounceDelay: 50, // the delay on debounce used while resizing window (advanced)
+          throttleDelay: 99, // the delay on throttle used while scrolling the page (advanced)
+
+          // Settings that can be overridden on per-element basis, by `data-aos-*` attributes:
+          offset: themeOffset, // offset (in px) from the original trigger point
+          delay: themeDelay, // values from 0 to 3000, with step 50ms
+          duration: themeDuration, // values from 0 to 3000, with step 50ms
+          easing: themeEasing, // default easing for AOS animations
+          once: themeOnce, // whether animation should happen only once - while scrolling down
+          mirror: themeMirror, // whether elements should animate out while scrolling past them
+          anchorPlacement: themeAnchorPlacement, // defines which position of the element regarding to window should trigger the animation
+
+        });
+      </script>
+    
+
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/v-plugs-ayu/lib/ayu.css">
+<script src="https://cdn.jsdelivr.net/npm/v-plugs-ayu/lib/ayu.umd.min.js"></script>
+<div id="appCopy">
+</div>
+<script>
+  var vm = new Vue({
+    el: '#appCopy',
+    data: {
+    },
+    computed: {
+    },
+    mounted() {
+      const that = this;
+      //  监听 ctrl + c事件  
+      $(document).unbind('keypress').bind('keypress', function (e) {
+        if (e.ctrlKey && e.keyCode == 67) {
+          doSomething();
+          // 返回false, 防止重复触发copy事件  
+          return false;
+        }
+      })
+
+      // 鼠标右键的复制事件  
+      $(document).unbind('copy').bind('copy', function (e) {
+        doSomething();
+        // console.log('右键复制 监听成功');
+      });
+
+      function doSomething() {
+        that.$notify({
+          title: "成功",
+          content: "代码已复制，请遵守相关授权协议。",
+          type: 'success'
+        })
+        // console.log('ctrl + c 监听成功');  
+      }
+    },
+    methods: {
+    },
+    created() { }
+  })
+</script>
+    
+
+    <!-- 输入框打字特效 -->
+    
+      <script src="/js/activate-power-mode.js"></script>
+      <script>
+          POWERMODE.colorful = true;  // 打开随机颜色特效
+          POWERMODE.shake = false;    // 关闭输入框抖动
+          document.body.addEventListener('input', POWERMODE);//监听打字事件
+      </script>
+    
+
+    <!-- markdown代码一键复制功能 -->
+    <script src="/js/clipboard/clipboard.min.js"></script>
+    <script>
+      !function (e, t, a) {
+        var copy = '复制';
+        /* code */
+        var initCopyCode = function(){
+          var copyHtml = '';
+          copyHtml += '<button class="btn-copy" data-clipboard-snippet="" style="position:absolute;top:0;right:0;z-index:1;">';
+          copyHtml += '<i class="fa fa-copy"></i><span>' + copy + '</span>';
+          copyHtml += '</button>';
+          $(".post-detail pre").not('.gutter pre').wrap("<div class='codeBox' style='position:relative;width:100%;'></div>")
+          $(".post-detail pre").not('.gutter pre').before(copyHtml);
+          new ClipboardJS('.btn-copy', {
+              target: function(trigger) {
+                  return trigger.nextElementSibling;
+              }
+          });
+        }
+        initCopyCode();
+      }(window, document);
+    </script>
+
+    <script src="/js/lazyload/lazyload@1.9.1.js"></script>
+    <script>
+      $(function() {
+        $("div.lazyload, img.lazyload, a.lazyload").lazyload(
+            {
+                effect: "fadeIn",
+                placeholder: "https://img10.360buyimg.com/ddimg/jfs/t1/159345/8/2271/222193/5ff7b36fEe49f5663/a95287c20385127f.gif"    //图片未加载出来时显示的占位图
+            }
+        );
+    });
+    </script>
+    
+    <script src="/js/app.js"></script>
+  </body>
+</html>
